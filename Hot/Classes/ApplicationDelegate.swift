@@ -166,7 +166,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         else
         {
             let color: NSColor = 
-            {                
+            {
                 return .controlTextColor
             }()
             

@@ -34,14 +34,6 @@ public class PreferencesWindowController: NSWindowController
         }
     }
     
-    @objc public dynamic var colorizeStatusItemText = UserDefaults.standard.bool( forKey: "colorizeStatusItemText" )
-    {
-        didSet
-        {
-            UserDefaults.standard.setValue( self.colorizeStatusItemText, forKey: "colorizeStatusItemText" )
-        }
-    }
-
     @objc public dynamic var convertToFahrenheit = UserDefaults.standard.bool( forKey: "convertToFahrenheit" )
     {
         didSet

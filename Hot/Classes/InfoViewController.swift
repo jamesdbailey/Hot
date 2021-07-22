@@ -30,8 +30,6 @@ public class InfoViewController: NSViewController
     private var observations: [ NSKeyValueObservation ] = []
     
     @objc public private( set ) dynamic var log                 = ThermalLog()
-//    @objc public private( set ) dynamic var schedulerLimit: Int = 0
-//    @objc public private( set ) dynamic var availableCPUs:  Int = 0
     @objc public private( set ) dynamic var speedLimit:     Int = 0
     @objc public private( set ) dynamic var cpuTemperature: Int = 0
     
@@ -49,12 +47,9 @@ public class InfoViewController: NSViewController
         
         self.graphViewHeight.constant = 0
         
-//        let o1 = self.log.observe( \.schedulerLimit ) { [ weak self ] _, _ in self?.update() }
-//        let o2 = self.log.observe( \.availableCPUs  ) { [ weak self ] _, _ in self?.update() }
-        let o3 = self.log.observe( \.speedLimit     ) { [ weak self ] _, _ in self?.update() }
         let o4 = self.log.observe( \.cpuTemperature ) { [ weak self ] _, _ in self?.update() }
         
-        self.observations.append( contentsOf: [ o3, o4 ] )
+        self.observations.append( contentsOf: [ o4 ] )
         
         let timer = Timer( timeInterval: 2, repeats: true )
         {
@@ -70,33 +65,14 @@ public class InfoViewController: NSViewController
     
     private func update()
     {
-//        if let n = self.log.schedulerLimit?.intValue
-//        {
-//            self.schedulerLimit = n
-//        }
-//        
-//        if let n = self.log.availableCPUs?.intValue
-//        {
-//            self.availableCPUs = n
-//        }
-        
-        if let n = self.log.speedLimit?.intValue
-        {
-            self.speedLimit = n
-        }
-        
         if let n = self.log.cpuTemperature?.intValue
         {
             self.cpuTemperature = n
         }
         
-        if self.speedLimit > 0 && self.cpuTemperature > 0
+        if self.cpuTemperature > 0
         {
-            self.graphView.addData( speed: self.speedLimit, temperature: self.cpuTemperature )
-        }
-        else if self.cpuTemperature > 0
-        {
-            self.graphView.addData( speed: 100, temperature: self.cpuTemperature )
+            self.graphView.addData( temperature: self.cpuTemperature )
         }
         
         self.graphViewHeight.constant = self.graphView.canDisplay ? 100 : 0

@@ -16,7 +16,6 @@
             <connections>
                 <outlet property="menu" destination="YdR-H7-b4a" id="jeu-CN-jol"/>
                 <outlet property="sensorsMenu" destination="ub7-du-ljd" id="LPJ-gc-4R1"/>
-                <outlet property="updater" destination="O40-Rx-Vw9" id="ApT-sO-5me"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -735,11 +734,5 @@
             </items>
             <point key="canvasLocation" x="-226" y="47"/>
         </menu>
-        <customObject id="O40-Rx-Vw9" customClass="GitHubUpdater">
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="string" keyPath="user" value="macmade"/>
-                <userDefinedRuntimeAttribute type="string" keyPath="repository" value="Hot"/>
-            </userDefinedRuntimeAttributes>
-        </customObject>
     </objects>
 </document>

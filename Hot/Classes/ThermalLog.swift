@@ -26,9 +26,6 @@ import Foundation
 
 public class ThermalLog: NSObject
 {
-    @objc public dynamic var schedulerLimit: NSNumber?
-    @objc public dynamic var availableCPUs:  NSNumber?
-    @objc public dynamic var speedLimit:     NSNumber?
     @objc public dynamic var cpuTemperature: NSNumber?
     @objc public dynamic var sensors:        [ String : Double ] = [:]
     
@@ -87,61 +84,6 @@ public class ThermalLog: NSObject
                 {
                     self.sensors        = sensors
                     self.cpuTemperature = NSNumber( value: temp )
-                }
-            }
-            
-            let pipe            = Pipe()
-            let task            = Process()
-            task.launchPath     = "/usr/bin/pmset"
-            task.arguments      = [ "-g", "therm" ]
-            task.standardOutput = pipe
-            
-            task.launch()
-            task.waitUntilExit()
-            
-            if task.terminationStatus != 0
-            {
-                self.refreshing = false
-                
-                return
-            }
-            
-            let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            
-            guard let str = String( data: data, encoding: .utf8 ), str.count > 0 else
-            {
-                self.refreshing = false
-                
-                return
-            }
-            
-            let lines = str.replacingOccurrences( of: " ",  with: "" ).replacingOccurrences( of: "\t", with: "" ).split( separator: "\n" )
-            
-            for line in lines
-            {
-                let p = line.split( separator: "=" )
-                
-                if p.count < 2
-                {
-                    continue
-                }
-                
-                guard let n = UInt( p[ 1 ] ) else
-                {
-                    continue
-                }
-                
-                if( p[ 0 ] == "CPU_Scheduler_Limit" )
-                {
-                    DispatchQueue.main.async { self.schedulerLimit = NSNumber( value: n ) }
-                }
-                else if( p[ 0 ] == "CPU_Available_CPUs" )
-                {
-                    DispatchQueue.main.async { self.availableCPUs = NSNumber( value: n ) }
-                }
-                else if( p[ 0 ] == "CPU_Speed_Limit" )
-                {
-                    DispatchQueue.main.async { self.speedLimit = NSNumber( value: n ) }
                 }
             }
             
