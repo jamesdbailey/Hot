@@ -49,14 +49,6 @@ public class PreferencesWindowController: NSWindowController
             UserDefaults.standard.setValue( self.convertToFahrenheit, forKey: "convertToFahrenheit" )
         }
     }
-
-    @objc public dynamic var automaticallyCheckForUpdates = UserDefaults.standard.bool( forKey: "automaticallyCheckForUpdates" )
-    {
-        didSet
-        {
-            UserDefaults.standard.setValue( self.automaticallyCheckForUpdates, forKey: "automaticallyCheckForUpdates" )
-        }
-    }
     
     @objc public dynamic var startAtLogin = NSApp.isLoginItemEnabled()
     {

@@ -23,7 +23,6 @@
  ******************************************************************************/
 
 import Cocoa
-import GitHubUpdates
 
 @NSApplicationMain
 class ApplicationDelegate: NSObject, NSApplicationDelegate
@@ -36,14 +35,12 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
     
     @IBOutlet private var menu:        NSMenu!
     @IBOutlet private var sensorsMenu: NSMenu!
-    @IBOutlet private var updater:     GitHubUpdater!
     
     @objc public private( set ) dynamic var infoViewController: InfoViewController?
     
     deinit
     {
         UserDefaults.standard.removeObserver( self, forKeyPath: "displayCPUTemperature" )
-        UserDefaults.standard.removeObserver( self, forKeyPath: "colorizeStatusItemText" )
         UserDefaults.standard.removeObserver( self, forKeyPath: "convertToFahrenheit" )
         UserDefaults.standard.removeObserver( self, forKeyPath: "hideStatusIcon" )
     }
@@ -52,9 +49,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
     {
         if UserDefaults.standard.object( forKey: "LastLaunch" ) == nil
         {
-            UserDefaults.standard.setValue( true,     forKey: "automaticallyCheckForUpdates" )
             UserDefaults.standard.setValue( true,     forKey: "displayCPUTemperature" )
-            UserDefaults.standard.setValue( true,     forKey: "colorizeStatusItemText" )
             UserDefaults.standard.setValue( NSDate(), forKey: "LastLaunch" )
         }
         
@@ -77,27 +72,8 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         self.observations.append( contentsOf: [ o1, o2, o3 ] )
         
         UserDefaults.standard.addObserver( self, forKeyPath: "displayCPUTemperature",  options: [], context: nil )
-        UserDefaults.standard.addObserver( self, forKeyPath: "colorizeStatusItemText", options: [], context: nil )
         UserDefaults.standard.addObserver( self, forKeyPath: "convertToFahrenheit",    options: [], context: nil )
         UserDefaults.standard.addObserver( self, forKeyPath: "hideStatusIcon",         options: [], context: nil )
-        
-        if UserDefaults.standard.bool( forKey: "automaticallyCheckForUpdates" )
-        {
-            DispatchQueue.main.asyncAfter( deadline: .now() + .seconds( 2 ) )
-            {
-                self.updater.checkForUpdatesInBackground()
-            }
-        }
-        
-        Timer.scheduledTimer( withTimeInterval: 3600, repeats: true )
-        {
-            _ in 
-            
-            if UserDefaults.standard.bool( forKey: "automaticallyCheckForUpdates" )
-            {
-                self.updater.checkForUpdatesInBackground()
-            }
-        }
     }
     
     override func observeValue( forKeyPath keyPath: String?, of object: Any?, change: [ NSKeyValueChangeKey : Any ]?, context: UnsafeMutableRawPointer? )
@@ -105,7 +81,6 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         let keyPaths =
         [
             "displayCPUTemperature",
-            "colorizeStatusItemText",
             "convertToFahrenheit",
             "hideStatusIcon"
         ]
@@ -158,12 +133,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         NSApp.activate( ignoringOtherApps: true )
         window.makeKeyAndOrderFront( nil )
     }
-    
-    @IBAction public func checkForUpdates( _ sender: Any? )
-    {
-        self.updater.checkForUpdates( sender )
-    }
-    
+        
     private func updateTitle()
     {
         var title       = ""
@@ -195,15 +165,8 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
         else
         {
-            let color: NSColor =
-            {
-                let limit = self.infoViewController?.speedLimit ?? 100
-                
-                if limit > 0 && limit < 60 && UserDefaults.standard.bool( forKey: "colorizeStatusItemText" )
-                {
-                    return .orange
-                }
-                
+            let color: NSColor = 
+            {                
                 return .controlTextColor
             }()
             

@@ -79,7 +79,7 @@ public class GraphView: NSView
         
         var start1  = NSMakePoint( 0, 0 )
         var start2  = NSMakePoint( 0, 0 )
-        var end1    = NSMakePoint( 0, 0 )
+        //var end1    = NSMakePoint( 0, 0 )
         var end2    = NSMakePoint( 0, 0 )
         var lowest1 = CGFloat( 100 )
         var lowest2 = CGFloat( 100 )
@@ -113,10 +113,10 @@ public class GraphView: NSView
             }
             else
             {
-                end1 = NSMakePoint( x, y1 )
+                //end1 = NSMakePoint( x, y1 )
                 end2 = NSMakePoint( x, y2 )
                 
-                path1.line( to: end1 )
+                //path1.line( to: end1 )
                 path2.line( to: end2 )
             }
             
@@ -129,7 +129,7 @@ public class GraphView: NSView
         path2.lineCapStyle = .round
         
         NSColor.systemBlue.withAlphaComponent( 0.75 ).setStroke()
-        path1.stroke()
+        //path1.stroke()
         
         NSColor.systemOrange.withAlphaComponent( 0.75 ).setStroke()
         path2.stroke()
@@ -139,23 +139,23 @@ public class GraphView: NSView
             let fill1 = path1.copy() as! NSBezierPath
             let fill2 = path2.copy() as! NSBezierPath
             
-            fill1.line( to: NSMakePoint( end1.x, lowest1 - 20 ) )
+            //fill1.line( to: NSMakePoint( end1.x, lowest1 - 20 ) )
             fill2.line( to: NSMakePoint( end2.x, lowest2 - 20 ) )
-            fill1.line( to: NSMakePoint( rect.origin.x, lowest1 - 20 ) )
+            //fill1.line( to: NSMakePoint( rect.origin.x, lowest1 - 20 ) )
             fill2.line( to: NSMakePoint( rect.origin.x, lowest2 - 20 ) )
             
             fill1.close()
             fill2.close()
             
-            NSGradient( colors: [ NSColor.systemBlue.withAlphaComponent( 0.75 ),   NSColor.clear ] )?.draw( in: fill1, angle: -90 )
+            //NSGradient( colors: [ NSColor.systemBlue.withAlphaComponent( 0.75 ),   NSColor.clear ] )?.draw( in: fill1, angle: -90 )
             NSGradient( colors: [ NSColor.systemOrange.withAlphaComponent( 0.75 ), NSColor.clear ] )?.draw( in: fill2, angle: -90 )
         }
         
-        let circle1 = NSBezierPath( ovalIn: NSMakeRect( rect.origin.x, rect.origin.y + 10, 7.5, 7.5 ) )
+        _ = NSBezierPath( ovalIn: NSMakeRect( rect.origin.x, rect.origin.y + 10, 7.5, 7.5 ) )
         let circle2 = NSBezierPath( ovalIn: NSMakeRect( rect.origin.x, rect.origin.y,      7.5, 7.5 ) )
         
         NSColor.systemBlue.withAlphaComponent( 0.75 ).setFill()
-        circle1.fill()
+        //circle1.fill()
         
         NSColor.systemOrange.withAlphaComponent( 0.75 ).setFill()
         circle2.fill()
@@ -166,7 +166,7 @@ public class GraphView: NSView
             .font            : NSFont.systemFont( ofSize: 8 )
         ]
         
-        ( "Speed"       as NSString ).draw( at: NSMakePoint( rect.origin.x + 10, rect.origin.y + 9 ), withAttributes: attributes )
+//        ( "Speed"       as NSString ).draw( at: NSMakePoint( rect.origin.x + 10, rect.origin.y + 9 ), withAttributes: attributes )
         ( "Temperature" as NSString ).draw( at: NSMakePoint( rect.origin.x + 10, rect.origin.y - 1 ), withAttributes: attributes )
     }
 }

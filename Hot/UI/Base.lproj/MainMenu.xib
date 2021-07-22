@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19115.3"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -724,12 +724,6 @@
                 <menuItem title="Preferences..." keyEquivalent="," id="JFH-mp-6PU">
                     <connections>
                         <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="E99-rm-GGi"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Check for Updates..." id="HLn-la-Ngo">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="Ghz-8l-CJH"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="EM4-fa-dhP"/>
