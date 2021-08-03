@@ -141,6 +141,6 @@ public class GraphView: NSView
             .font            : NSFont.systemFont( ofSize: 8 )
         ]
         
-        ( "Temperature" as NSString ).draw( at: NSMakePoint( rect.origin.x + 10, rect.origin.y - 1 ), withAttributes: attributes )
+        ( "CPU Temperature" as NSString ).draw( at: NSMakePoint( rect.origin.x + 10, rect.origin.y - 1 ), withAttributes: attributes )
     }
 }

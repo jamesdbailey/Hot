@@ -26,7 +26,7 @@ import Cocoa
 
 public class SensorViewController: NSViewController
 {
-    @objc private dynamic var icon  = NSImage( named: "Unknown" )
+    @objc private dynamic var icon  = NSImage( systemSymbolName: "questionmark", accessibilityDescription: nil )
     @objc private dynamic var label = "Unknown:"
     @objc public  dynamic var value = 0
     @objc public  dynamic var name  = "Unknown"
@@ -37,20 +37,29 @@ public class SensorViewController: NSViewController
             
             if self.name.lowercased().hasPrefix( "eacc" )
             {
-                self.icon = NSImage( named: "eAccTemplate" )
+                self.icon = NSImage( systemSymbolName: "leaf.fill", accessibilityDescription: nil )
             }
             else if self.name.lowercased().hasPrefix( "pacc" )
             {
-                self.icon = NSImage( named: "pAccTemplate" )
+                self.icon = NSImage( systemSymbolName: "bolt.fill", accessibilityDescription: nil )
             }
             else if self.name.lowercased().hasPrefix( "tcxc" )
             {
-                self.icon = NSImage( named: "TCXCTemplate" )
+                self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
             }
-            
-            else
+            else if (self.name.lowercased().hasPrefix( "soc" )) ||
+                        (self.name.lowercased().hasPrefix( "pmgr" )) ||
+                        (self.name.lowercased().hasPrefix( "gpu" ))
             {
-                self.icon = NSImage( named: "UnknownTemplate" )
+                self.icon = NSImage( systemSymbolName: "cpu", accessibilityDescription: nil )
+            }
+            else if self.name.lowercased().hasPrefix( "ane" )
+            {
+                self.icon = NSImage( systemSymbolName: "brain", accessibilityDescription: nil )
+            }
+           else
+            {
+                self.icon = NSImage( systemSymbolName: "questionmark", accessibilityDescription: nil )
             }
         }
     }

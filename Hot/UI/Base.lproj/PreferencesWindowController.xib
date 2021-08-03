@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19150" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19115.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19150"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,11 +43,11 @@
                         </connections>
                     </button>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mxk-B1-lA8">
-                        <rect key="frame" x="478" y="20" width="140" height="140"/>
+                        <rect key="frame" x="478" y="17.5" width="140" height="147"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="mxk-B1-lA8" secondAttribute="height" multiplier="1:1" id="1gH-bx-NiI"/>
                         </constraints>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="L7y-FV-PXr"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="flame" catalog="system" id="L7y-FV-PXr"/>
                     </imageView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="COq-oL-Uqj">
                         <rect key="frame" x="18" y="19" width="105" height="18"/>
@@ -93,6 +93,6 @@
         <userDefaultsController representsSharedInstance="YES" id="PTQ-Ge-YCc"/>
     </objects>
     <resources>
-        <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="flame" catalog="system" width="13" height="16"/>
     </resources>
 </document>

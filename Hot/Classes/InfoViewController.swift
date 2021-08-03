@@ -32,9 +32,12 @@ public class InfoViewController: NSViewController
     @objc public private( set ) dynamic var log                 = ThermalLog()
     @objc public private( set ) dynamic var speedLimit:     Int = 0
     @objc public private( set ) dynamic var cpuTemperature: Int = 0
-    
+    @objc public private( set ) dynamic var gpuTemperature: Int = 0
+
     @IBOutlet private var graphView:       GraphView!
     @IBOutlet private var graphViewHeight: NSLayoutConstraint!
+    
+    let timerInterval = 5.0
     
     public override var nibName: NSNib.Name?
     {
@@ -47,11 +50,13 @@ public class InfoViewController: NSViewController
         
         self.graphViewHeight.constant = 0
         
-        let o4 = self.log.observe( \.cpuTemperature ) { [ weak self ] _, _ in self?.update() }
+        let o1 = self.log.observe( \.cpuTemperature ) { [ weak self ] _, _ in self?.update() }
+        let o2 = self.log.observe( \.gpuTemperature ) { [ weak self ] _, _ in self?.update() }
         
-        self.observations.append( contentsOf: [ o4 ] )
-        
-        let timer = Timer( timeInterval: 2, repeats: true )
+        self.observations.append( contentsOf: [ o1 ] )
+        self.observations.append( contentsOf: [ o2 ] )
+
+        let timer = Timer( timeInterval: timerInterval, repeats: true )
         {
             _ in self.log.refresh()
         }
@@ -73,6 +78,16 @@ public class InfoViewController: NSViewController
         if self.cpuTemperature > 0
         {
             self.graphView.addData( temperature: self.cpuTemperature )
+        }
+        
+        if let n = self.log.gpuTemperature?.intValue
+        {
+            self.gpuTemperature = n
+        }
+        
+        if self.gpuTemperature > 0
+        {
+            //self.graphView.addData( temperature: self.cpuTemperature )
         }
         
         self.graphViewHeight.constant = self.graphView.canDisplay ? 100 : 0

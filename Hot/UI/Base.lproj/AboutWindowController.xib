@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19150" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19150"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="277" height="168"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1175"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="307" height="198"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -25,12 +26,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="307" height="198"/>
                         <subviews>
                             <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bkJ-Ud-XM8">
-                                <rect key="frame" x="30" y="30" width="128" height="128"/>
+                                <rect key="frame" x="30" y="27.5" width="128" height="135"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="CSW-JZ-Wa6"/>
                                     <constraint firstAttribute="height" constant="128" id="kJV-3v-pYD"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSApplicationIcon" id="GGX-kf-SmE"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="flame" catalog="system" id="GGX-kf-SmE"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c3B-11-Nnn">
                                 <rect key="frame" x="186" y="111" width="93" height="47"/>
@@ -93,6 +94,6 @@
         </window>
     </objects>
     <resources>
-        <image name="NSApplicationIcon" width="32" height="32"/>
+        <image name="flame" catalog="system" width="13" height="16"/>
     </resources>
 </document>

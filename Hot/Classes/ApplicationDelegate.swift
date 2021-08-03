@@ -56,7 +56,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         self.aboutWindowController             = AboutWindowController()
         self.preferencesWindowController       = PreferencesWindowController()
         self.statusItem                        = NSStatusBar.system.statusItem( withLength: NSStatusItem.variableLength )
-        self.statusItem?.button?.image         = NSImage( named: "StatusIconTemplate" )
+        self.statusItem?.button?.image         = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
         self.statusItem?.button?.imagePosition = .imageLeading
         self.statusItem?.button?.font          = NSFont.monospacedDigitSystemFont( ofSize: NSFont.smallSystemFontSize, weight: .light )
         self.statusItem?.menu                  = self.menu
@@ -179,7 +179,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
         else
         {
-            self.statusItem?.button?.image = NSImage( named: "StatusIconTemplate" )
+            self.statusItem?.button?.image = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
         }
     }
     

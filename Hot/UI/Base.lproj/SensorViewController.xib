@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19150" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19150"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,12 +18,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ySR-dZ-ri6">
-                    <rect key="frame" x="10" y="2" width="16" height="16"/>
+                    <rect key="frame" x="10" y="-0.5" width="16" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="Mgj-aj-MOI"/>
                         <constraint firstAttribute="height" constant="16" id="N0L-Xc-fDJ"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="UnknownTemplate" id="DuB-2f-0AL"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="questionmark.square.fill" catalog="system" id="DuB-2f-0AL"/>
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.icon" id="TXu-hh-p9j"/>
                     </connections>
@@ -69,6 +69,6 @@
         </customView>
     </objects>
     <resources>
-        <image name="UnknownTemplate" width="150" height="150"/>
+        <image name="questionmark.square.fill" catalog="system" width="15" height="14"/>
     </resources>
 </document>

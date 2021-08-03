@@ -27,6 +27,7 @@ import Foundation
 public class ThermalLog: NSObject
 {
     @objc public dynamic var cpuTemperature: NSNumber?
+    @objc public dynamic var gpuTemperature: NSNumber?
     @objc public dynamic var sensors:        [ String : Double ] = [:]
     
     private var refreshing = false
@@ -39,7 +40,31 @@ public class ThermalLog: NSObject
         self.refresh()
     }
     
-    private func readSensors() -> [ String : Double ]
+    private func readTemperatureSensors() -> [ String : Double ]
+    {
+        #if arch( arm64 )
+        
+        Dictionary( uniqueKeysWithValues:
+            ReadM1Sensors().filter
+            {
+                $0.key.hasPrefix( "pACC" ) || $0.key.hasPrefix( "eACC" ) ||
+            $0.key.hasPrefix( "SOC" ) || $0.key.hasPrefix( "PMGR" ) ||
+            $0.key.hasPrefix( "GPU" ) || $0.key.hasPrefix( "ANE" )
+            }
+            .map
+            {
+                ( $0.key, $0.value.doubleValue )
+            }
+        )
+        
+        #else
+        
+        [ "TCXC" : SMCGetCPUTemperature() ]
+        
+        #endif
+    }
+    
+    private func readCPUSensors() -> [ String : Double ]
     {
         #if arch( arm64 )
         
@@ -60,7 +85,28 @@ public class ThermalLog: NSObject
         
         #endif
     }
-    
+
+    private func readGPUSensors() -> [ String : Double ]
+    {
+        #if arch( arm64 )
+        
+        Dictionary( uniqueKeysWithValues:
+            ReadM1Sensors().filter
+            {
+                $0.key.hasPrefix( "GPU" )
+            }
+            .map
+            {
+                ( $0.key, $0.value.doubleValue )
+            }
+        )
+        
+        #else
+        
+        [ "TCXC" : SMCGetCPUTemperature() ]
+        
+        #endif
+    }
     public func refresh()
     {
         ThermalLog.queue.async
@@ -72,18 +118,25 @@ public class ThermalLog: NSObject
             
             self.refreshing = true
             
-            let sensors = self.readSensors()
-            let temp    = sensors.reduce( 0.0 )
+            let cpuSensors = self.readCPUSensors()
+            let cpuTemp    = cpuSensors.reduce( 0.0 )
             {
                 r, v in v.value > r ? v.value : r
             }
-            
-            if temp > 1
+
+            let gpuSensors = self.readGPUSensors()
+            let gpuTemp    = gpuSensors.reduce( 0.0 )
+            {
+                r, v in v.value > r ? v.value : r
+            }
+
+            if cpuTemp > 1 || gpuTemp > 1
             {
                 DispatchQueue.main.async
                 {
-                    self.sensors        = sensors
-                    self.cpuTemperature = NSNumber( value: temp )
+                    self.sensors        = self.readTemperatureSensors()
+                    self.cpuTemperature = NSNumber( value: cpuTemp )
+                    self.gpuTemperature = NSNumber( value: gpuTemp )
                 }
             }
             
