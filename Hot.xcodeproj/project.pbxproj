@@ -15,28 +15,18 @@
 		052FBC38251ECB8B00C4322E /* SMC.c in Sources */ = {isa = PBXBuildFile; fileRef = 052FBC37251ECB8B00C4322E /* SMC.c */; };
 		052FBCA3251EE43B00C4322E /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052FBCA2251EE43B00C4322E /* PreferencesWindowController.swift */; };
 		052FBCA7251EE46700C4322E /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 052FBCA5251EE46700C4322E /* PreferencesWindowController.xib */; };
-		052FBCD4251F842C00C4322E /* SpeedTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 052FBCCF251F842C00C4322E /* SpeedTemplate.pdf */; };
-		052FBCD5251F842C00C4322E /* CPUTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 052FBCD1251F842C00C4322E /* CPUTemplate.pdf */; };
-		052FBCD6251F842C00C4322E /* TemperatureTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 052FBCD2251F842C00C4322E /* TemperatureTemplate.pdf */; };
-		052FBCD7251F842C00C4322E /* SchedulerTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 052FBCD3251F842C00C4322E /* SchedulerTemplate.pdf */; };
 		055A9320252778C10070F771 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A931F252778C10070F771 /* InfoViewController.swift */; };
 		055A9323252778D00070F771 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055A9321252778D00070F771 /* InfoViewController.xib */; };
 		055A932525277E9E0070F771 /* IntegerToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A932425277E9E0070F771 /* IntegerToString.swift */; };
 		055A932725277F6E0070F771 /* TemperatureToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A932625277F6E0070F771 /* TemperatureToString.swift */; };
 		055A932925277F990070F771 /* PercentToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A932825277F990070F771 /* PercentToString.swift */; };
 		055A932B252780FD0070F771 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055A932A252780FD0070F771 /* GraphView.swift */; };
-		057F8B00251D22360048F1E1 /* StatusIconTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 057F8AFF251D22360048F1E1 /* StatusIconTemplate.pdf */; };
 		057F8B0C251D273E0048F1E1 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057F8B0B251D273E0048F1E1 /* AboutWindowController.swift */; };
-		057F8B11251D274C0048F1E1 /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 057F8B10251D274C0048F1E1 /* NSApplication+LaunchServices.m */; };
 		057F8B15251D27650048F1E1 /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 057F8B13251D27650048F1E1 /* AboutWindowController.xib */; };
-		057F8B1B251D2A970048F1E1 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 057F8B1A251D2A970048F1E1 /* Icon.icns */; };
 		05AA407A251CF3D200106CEA /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA4079251CF3D200106CEA /* ApplicationDelegate.swift */; };
 		05AA407F251CF3D600106CEA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AA407D251CF3D600106CEA /* MainMenu.xib */; };
 		05AA408D251CFA0600106CEA /* ThermalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA408C251CFA0600106CEA /* ThermalLog.swift */; };
-		05B0DFA426714A830068FF9B /* pAccTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05B0DFA026714A830068FF9B /* pAccTemplate.pdf */; };
-		05B0DFA526714A830068FF9B /* UnknownTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05B0DFA226714A830068FF9B /* UnknownTemplate.pdf */; };
-		05B0DFA626714A830068FF9B /* eAccTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05B0DFA326714A830068FF9B /* eAccTemplate.pdf */; };
-		05B0DFAA267150F40068FF9B /* TCXCTemplate.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 05B0DFA8267150F40068FF9B /* TCXCTemplate.pdf */; };
+		6DE5A31826B89D8D00B9744F /* NSApplication+LaunchServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5A31726B89D8D00B9744F /* NSApplication+LaunchServices.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,23 +52,15 @@
 		052FBC37251ECB8B00C4322E /* SMC.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SMC.c; sourceTree = "<group>"; };
 		052FBCA2251EE43B00C4322E /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		052FBCA6251EE46700C4322E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PreferencesWindowController.xib; sourceTree = "<group>"; };
-		052FBCCF251F842C00C4322E /* SpeedTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SpeedTemplate.pdf; sourceTree = "<group>"; };
-		052FBCD1251F842C00C4322E /* CPUTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = CPUTemplate.pdf; sourceTree = "<group>"; };
-		052FBCD2251F842C00C4322E /* TemperatureTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TemperatureTemplate.pdf; sourceTree = "<group>"; };
-		052FBCD3251F842C00C4322E /* SchedulerTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = SchedulerTemplate.pdf; sourceTree = "<group>"; };
 		055A931F252778C10070F771 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		055A9322252778D00070F771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/InfoViewController.xib; sourceTree = "<group>"; };
 		055A932425277E9E0070F771 /* IntegerToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerToString.swift; sourceTree = "<group>"; };
 		055A932625277F6E0070F771 /* TemperatureToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureToString.swift; sourceTree = "<group>"; };
 		055A932825277F990070F771 /* PercentToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentToString.swift; sourceTree = "<group>"; };
 		055A932A252780FD0070F771 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
-		057F8AFF251D22360048F1E1 /* StatusIconTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = StatusIconTemplate.pdf; sourceTree = "<group>"; };
 		057F8B0B251D273E0048F1E1 /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		057F8B0E251D274C0048F1E1 /* Hot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hot-Bridging-Header.h"; sourceTree = "<group>"; };
-		057F8B0F251D274C0048F1E1 /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
-		057F8B10251D274C0048F1E1 /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
 		057F8B14251D27650048F1E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutWindowController.xib; sourceTree = "<group>"; };
-		057F8B1A251D2A970048F1E1 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		057F8B1E251D2B900048F1E1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		057F8B1F251D2B900048F1E1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		057F8B21251D2C840048F1E1 /* Release - ccache.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release - ccache.xcconfig"; sourceTree = "<group>"; };
@@ -131,10 +113,8 @@
 		05AA4080251CF3D600106CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05AA4081251CF3D600106CEA /* Hot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hot.entitlements; sourceTree = "<group>"; };
 		05AA408C251CFA0600106CEA /* ThermalLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalLog.swift; sourceTree = "<group>"; };
-		05B0DFA026714A830068FF9B /* pAccTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pAccTemplate.pdf; sourceTree = "<group>"; };
-		05B0DFA226714A830068FF9B /* UnknownTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = UnknownTemplate.pdf; sourceTree = "<group>"; };
-		05B0DFA326714A830068FF9B /* eAccTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = eAccTemplate.pdf; sourceTree = "<group>"; };
-		05B0DFA8267150F40068FF9B /* TCXCTemplate.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = TCXCTemplate.pdf; sourceTree = "<group>"; };
+		6DE5A31626B89D8D00B9744F /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
+		6DE5A31726B89D8D00B9744F /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,16 +132,6 @@
 		057F8AFE251D22360048F1E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				05B0DFA8267150F40068FF9B /* TCXCTemplate.pdf */,
-				05B0DFA326714A830068FF9B /* eAccTemplate.pdf */,
-				05B0DFA026714A830068FF9B /* pAccTemplate.pdf */,
-				05B0DFA226714A830068FF9B /* UnknownTemplate.pdf */,
-				052FBCD1251F842C00C4322E /* CPUTemplate.pdf */,
-				057F8B1A251D2A970048F1E1 /* Icon.icns */,
-				052FBCD3251F842C00C4322E /* SchedulerTemplate.pdf */,
-				052FBCCF251F842C00C4322E /* SpeedTemplate.pdf */,
-				057F8AFF251D22360048F1E1 /* StatusIconTemplate.pdf */,
-				052FBCD2251F842C00C4322E /* TemperatureTemplate.pdf */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -332,10 +302,10 @@
 				055A931F252778C10070F771 /* InfoViewController.swift */,
 				055A932425277E9E0070F771 /* IntegerToString.swift */,
 				05221E8526700772007246FF /* DictionaryIsEmpty.swift */,
-				057F8B0F251D274C0048F1E1 /* NSApplication+LaunchServices.h */,
-				057F8B10251D274C0048F1E1 /* NSApplication+LaunchServices.m */,
 				055A932825277F990070F771 /* PercentToString.swift */,
 				052FBCA2251EE43B00C4322E /* PreferencesWindowController.swift */,
+				6DE5A31626B89D8D00B9744F /* NSApplication+LaunchServices.h */,
+				6DE5A31726B89D8D00B9744F /* NSApplication+LaunchServices.m */,
 				052FBC37251ECB8B00C4322E /* SMC.c */,
 				052FBC32251EC69B00C4322E /* SMC.h */,
 				05221E60266FD5BD007246FF /* AppleSilicon.h */,
@@ -419,21 +389,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				052FBCD4251F842C00C4322E /* SpeedTemplate.pdf in Resources */,
-				052FBCD6251F842C00C4322E /* TemperatureTemplate.pdf in Resources */,
-				057F8B00251D22360048F1E1 /* StatusIconTemplate.pdf in Resources */,
-				057F8B1B251D2A970048F1E1 /* Icon.icns in Resources */,
-				052FBCD5251F842C00C4322E /* CPUTemplate.pdf in Resources */,
 				05221E8B26700A57007246FF /* SensorViewController.xib in Resources */,
 				055A9323252778D00070F771 /* InfoViewController.xib in Resources */,
-				05B0DFA526714A830068FF9B /* UnknownTemplate.pdf in Resources */,
 				057F8B15251D27650048F1E1 /* AboutWindowController.xib in Resources */,
 				052FBCA7251EE46700C4322E /* PreferencesWindowController.xib in Resources */,
 				05AA407F251CF3D600106CEA /* MainMenu.xib in Resources */,
-				052FBCD7251F842C00C4322E /* SchedulerTemplate.pdf in Resources */,
-				05B0DFA626714A830068FF9B /* eAccTemplate.pdf in Resources */,
-				05B0DFAA267150F40068FF9B /* TCXCTemplate.pdf in Resources */,
-				05B0DFA426714A830068FF9B /* pAccTemplate.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,10 +431,10 @@
 				055A932B252780FD0070F771 /* GraphView.swift in Sources */,
 				05221E62266FD5BD007246FF /* AppleSilicon.m in Sources */,
 				05221E88267009A8007246FF /* SensorViewController.swift in Sources */,
-				057F8B11251D274C0048F1E1 /* NSApplication+LaunchServices.m in Sources */,
 				057F8B0C251D273E0048F1E1 /* AboutWindowController.swift in Sources */,
 				055A9320252778C10070F771 /* InfoViewController.swift in Sources */,
 				05AA408D251CFA0600106CEA /* ThermalLog.swift in Sources */,
+				6DE5A31826B89D8D00B9744F /* NSApplication+LaunchServices.m in Sources */,
 				055A932925277F990070F771 /* PercentToString.swift in Sources */,
 				05AA407A251CF3D200106CEA /* ApplicationDelegate.swift in Sources */,
 				052FBC38251ECB8B00C4322E /* SMC.c in Sources */,
@@ -539,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 057F8B25251D2C840048F1E1 /* Release.xcconfig */;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
 			};
 			name = Release;
@@ -556,7 +517,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Hot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hot/Classes/Hot-Bridging-Header.h";
@@ -575,7 +536,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Hot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hot/Classes/Hot-Bridging-Header.h";
