@@ -32,7 +32,7 @@ public class ThermalLog: NSObject
     
     private var refreshing = false
     
-    private static var queue = DispatchQueue( label: "com.xs-labs.Hot.ThermalLog", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
+    private static var queue = DispatchQueue( label: "com.xs-labs.Hot.ThermalLog", qos: .utility, attributes: [], autoreleaseFrequency: .workItem, target: nil )
     
     public override init()
     {
