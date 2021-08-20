@@ -30,7 +30,6 @@ public class InfoViewController: NSViewController
     private var observations: [ NSKeyValueObservation ] = []
     
     @objc public private( set ) dynamic var log                 = ThermalLog()
-    @objc public private( set ) dynamic var speedLimit:     Int = 0
     @objc public private( set ) dynamic var cpuTemperature: Int = 0
     @objc public private( set ) dynamic var gpuTemperature: Int = 0
 
@@ -61,6 +60,7 @@ public class InfoViewController: NSViewController
             _ in self.log.refresh()
         }
         
+        timer.tolerance = 5.0
         RunLoop.main.add( timer, forMode: .common )
         
         self.timer = timer

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19150" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19158" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19150"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19158"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -702,9 +702,9 @@
                         </binding>
                     </connections>
                 </menuItem>
-                <menuItem title="SoC Sensors" id="Uyl-at-zXs">
+                <menuItem title="Sensors" id="Uyl-at-zXs">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="SoC Sensors" id="ub7-du-ljd">
+                    <menu key="submenu" title="Sensors" id="ub7-du-ljd">
                         <items>
                             <menuItem title="Item" id="e7y-6X-k2N">
                                 <modifierMask key="keyEquivalentModifierMask"/>

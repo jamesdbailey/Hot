@@ -32,7 +32,7 @@ public class ThermalLog: NSObject
     
     private var refreshing = false
     
-    private static var queue = DispatchQueue( label: "com.xs-labs.Hot.ThermalLog", qos: .utility, attributes: [], autoreleaseFrequency: .workItem, target: nil )
+    private static var queue = DispatchQueue( label: "com.xs-labs.Hot.ThermalLog", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
     
     public override init()
     {
@@ -49,7 +49,9 @@ public class ThermalLog: NSObject
             {
                 $0.key.hasPrefix( "pACC" ) || $0.key.hasPrefix( "eACC" ) ||
             $0.key.hasPrefix( "SOC" ) || $0.key.hasPrefix( "PMGR" ) ||
-            $0.key.hasPrefix( "GPU" ) || $0.key.hasPrefix( "ANE" )
+            $0.key.hasPrefix( "GPU" ) || $0.key.hasPrefix( "ANE" ) ||
+            $0.key.hasPrefix( "ISP" ) || $0.key.hasPrefix( "NAND" ) ||
+            $0.key.hasPrefix( "gas" ) || $0.key.hasPrefix( "PMU" )
             }
             .map
             {

@@ -57,7 +57,23 @@ public class SensorViewController: NSViewController
             {
                 self.icon = NSImage( systemSymbolName: "brain", accessibilityDescription: nil )
             }
-           else
+            else if self.name.lowercased().hasPrefix( "isp" )
+            {
+                self.icon = NSImage( systemSymbolName: "camera", accessibilityDescription: nil )
+            }
+            else if self.name.lowercased().hasPrefix( "nand" )
+            {
+                self.icon = NSImage( systemSymbolName: "memorychip", accessibilityDescription: nil )
+            }
+            else if self.name.lowercased().hasPrefix( "gas" )
+            {
+                self.icon = NSImage( systemSymbolName: "battery.100.bolt", accessibilityDescription: nil )
+            }
+            else if self.name.lowercased().hasPrefix( "pmu" )
+            {
+                self.icon = NSImage( systemSymbolName: "gearshape.2", accessibilityDescription: nil )
+            }
+            else
             {
                 self.icon = NSImage( systemSymbolName: "questionmark", accessibilityDescription: nil )
             }

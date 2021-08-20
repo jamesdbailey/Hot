@@ -92,7 +92,11 @@ NSDictionary< NSString *, NSNumber * > * ReadM1Sensors( void )
             
             if( name != nil && event != nil )
             {
-                values[ name ] = [ NSNumber numberWithDouble: IOHIDEventGetFloatValue( event, 0x000F0000 ) ];
+                NSNumber *n = [ NSNumber numberWithDouble: IOHIDEventGetFloatValue( event, 0x000F0000 ) ];
+                if (n.doubleValue > 0.0)
+                {
+                    values[ name ] = n;
+                }
             }
             
             if( event != nil )

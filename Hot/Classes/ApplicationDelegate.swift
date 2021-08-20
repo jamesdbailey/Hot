@@ -65,11 +65,10 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         self.infoViewController            = infoViewController
         self.menu.item( withTag: 1 )?.view = infoViewController.view
         
-        let o1 = infoViewController.observe( \.speedLimit     ) { [ weak self ] _, _ in self?.updateTitle() }
         let o2 = infoViewController.observe( \.cpuTemperature ) { [ weak self ] _, _ in self?.updateTitle() }
         let o3 = infoViewController.observe( \.log.sensors    ) { [ weak self ] _, _ in self?.updateSensors() }
         
-        self.observations.append( contentsOf: [ o1, o2, o3 ] )
+        self.observations.append( contentsOf: [ o2, o3 ] )
         
         UserDefaults.standard.addObserver( self, forKeyPath: "displayCPUTemperature",  options: [], context: nil )
         UserDefaults.standard.addObserver( self, forKeyPath: "convertToFahrenheit",    options: [], context: nil )
@@ -139,20 +138,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         var title       = ""
         let transformer = TemperatureToString()
         
-        if let n1 = self.infoViewController?.speedLimit,
-           let n2 = self.infoViewController?.cpuTemperature,
-           UserDefaults.standard.bool( forKey: "displayCPUTemperature" ),
-           n1 > 0,
-           n2 > 0
-        {
-            let temp = transformer.transformedValue( n2 ) as? String ?? "--"
-            title    = "\( n1 )% \( temp )"
-        }
-        else if let n = self.infoViewController?.speedLimit, n > 0
-        {
-            title = "\( n )%"
-        }
-        else if let n = self.infoViewController?.cpuTemperature,
+        if let n = self.infoViewController?.cpuTemperature,
                 UserDefaults.standard.bool( forKey: "displayCPUTemperature" ),
                 n > 0
         {
