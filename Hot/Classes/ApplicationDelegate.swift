@@ -65,11 +65,14 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         self.infoViewController            = infoViewController
         self.menu.item( withTag: 1 )?.view = infoViewController.view
         
-        let o2 = infoViewController.observe( \.cpuTemperature ) { [ weak self ] _, _ in self?.updateTitle() }
-        let o3 = infoViewController.observe( \.log.sensors    ) { [ weak self ] _, _ in self?.updateSensors() }
-        
-        self.observations.append( contentsOf: [ o2, o3 ] )
-        
+        self.infoViewController?.onUpdate  =
+        {
+            [ weak self ] in
+            
+            self?.updateTitle()
+            self?.updateSensors()
+        }
+
         UserDefaults.standard.addObserver( self, forKeyPath: "displayCPUTemperature",  options: [], context: nil )
         UserDefaults.standard.addObserver( self, forKeyPath: "convertToFahrenheit",    options: [], context: nil )
         UserDefaults.standard.addObserver( self, forKeyPath: "hideStatusIcon",         options: [], context: nil )
@@ -151,7 +154,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         }
         else
         {
-            let color: NSColor = 
+            let color: NSColor =
             {
                 return .controlTextColor
             }()

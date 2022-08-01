@@ -6,18 +6,6 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIconFile</key>
-	<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-1024.png</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-16.png</string>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-32.png</string>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-64.png</string>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-128.png</string>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-256.png</string>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-512.png</string>
-		<string>/Users/jdb/Desktop/macOS/AppIcon.appiconset/fire-1024.png</string>
-	</array>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -29,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.3.0</string>
 	<key>CFBundleVersion</key>
-	<string>68</string>
+	<string>69</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -37,7 +25,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2020 XS-Labs. All rights reserved.</string>
+	<string>Copyright © 2022 </string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

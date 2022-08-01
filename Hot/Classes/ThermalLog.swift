@@ -27,7 +27,6 @@ import Foundation
 public class ThermalLog: NSObject
 {
     @objc public dynamic var cpuTemperature: NSNumber?
-    @objc public dynamic var gpuTemperature: NSNumber?
     @objc public dynamic var sensors:        [ String : Double ] = [:]
     
     private var refreshing = false
@@ -37,112 +36,54 @@ public class ThermalLog: NSObject
     public override init()
     {
         super.init()
-        self.refresh()
     }
     
-    private func readTemperatureSensors() -> [ String : Double ]
+    private func readTemperatureSensors() -> [ String :  Double ]
     {
-        #if arch( arm64 )
-        
-        Dictionary( uniqueKeysWithValues:
-            ReadM1Sensors().filter
-            {
-                $0.key.hasPrefix( "pACC" ) || $0.key.hasPrefix( "eACC" ) ||
-            $0.key.hasPrefix( "SOC" ) || $0.key.hasPrefix( "PMGR" ) ||
-            $0.key.hasPrefix( "GPU" ) || $0.key.hasPrefix( "ANE" ) ||
-            $0.key.hasPrefix( "ISP" ) || $0.key.hasPrefix( "NAND" ) ||
-            $0.key.hasPrefix( "gas" ) || $0.key.hasPrefix( "PMU" )
-            }
-            .map
+         Dictionary( uniqueKeysWithValues:
+            ReadSensors().map
             {
                 ( $0.key, $0.value.doubleValue )
             }
         )
-        
-        #else
-        
-        [ "TCXC" : SMCGetCPUTemperature() ]
-        
-        #endif
     }
     
-    private func readCPUSensors() -> [ String : Double ]
-    {
-        #if arch( arm64 )
-        
-        Dictionary( uniqueKeysWithValues:
-            ReadM1Sensors().filter
-            {
-                $0.key.hasPrefix( "pACC" ) || $0.key.hasPrefix( "eACC" )
-            }
-            .map
-            {
-                ( $0.key, $0.value.doubleValue )
-            }
-        )
-        
-        #else
-        
-        [ "TCXC" : SMCGetCPUTemperature() ]
-        
-        #endif
-    }
-
-    private func readGPUSensors() -> [ String : Double ]
-    {
-        #if arch( arm64 )
-        
-        Dictionary( uniqueKeysWithValues:
-            ReadM1Sensors().filter
-            {
-                $0.key.hasPrefix( "GPU" )
-            }
-            .map
-            {
-                ( $0.key, $0.value.doubleValue )
-            }
-        )
-        
-        #else
-        
-        [ "TCXC" : SMCGetCPUTemperature() ]
-        
-        #endif
-    }
-    public func refresh()
+    public func refresh( completion: @escaping () -> Void )
     {
         ThermalLog.queue.async
         {
             if self.refreshing
             {
+                completion()
+
                 return
             }
             
             self.refreshing = true
             
-            let cpuSensors = self.readCPUSensors()
-            let cpuTemp    = cpuSensors.reduce( 0.0 )
+            let sensors = self.readTemperatureSensors()
+            let all     = sensors.mapValues { $0 }
+            var temp    = 0.0
+
+            temp = all.filter
+            {
+                let k = $0.key.lowercased()
+                return k.hasSuffix( "tcal" ) == false && k.hasSuffix( "tr0z" ) == false
+            }
+            .reduce( 0.0 )
             {
                 r, v in v.value > r ? v.value : r
             }
 
-            let gpuSensors = self.readGPUSensors()
-            let gpuTemp    = gpuSensors.reduce( 0.0 )
+            if temp > 1
             {
-                r, v in v.value > r ? v.value : r
+                let n = NSNumber( value: temp )
+                self.cpuTemperature = n
             }
 
-            if cpuTemp > 1 || gpuTemp > 1
-            {
-                DispatchQueue.main.async
-                {
-                    self.sensors        = self.readTemperatureSensors()
-                    self.cpuTemperature = NSNumber( value: cpuTemp )
-                    self.gpuTemperature = NSNumber( value: gpuTemp )
-                }
-            }
-            
             self.refreshing = false
+
+            completion()
         }
     }
 }

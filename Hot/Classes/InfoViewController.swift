@@ -31,11 +31,12 @@ public class InfoViewController: NSViewController
     
     @objc public private( set ) dynamic var log                 = ThermalLog()
     @objc public private( set ) dynamic var cpuTemperature: Int = 0
-    @objc public private( set ) dynamic var gpuTemperature: Int = 0
 
     @IBOutlet private var graphView:       GraphView!
     @IBOutlet private var graphViewHeight: NSLayoutConstraint!
     
+    public var onUpdate: ( () -> Void )?
+
     let timerInterval = 5.0
     
     public override var nibName: NSNib.Name?
@@ -49,23 +50,34 @@ public class InfoViewController: NSViewController
         
         self.graphViewHeight.constant = 0
         
-        let o1 = self.log.observe( \.cpuTemperature ) { [ weak self ] _, _ in self?.update() }
-        let o2 = self.log.observe( \.gpuTemperature ) { [ weak self ] _, _ in self?.update() }
-        
-        self.observations.append( contentsOf: [ o1 ] )
-        self.observations.append( contentsOf: [ o2 ] )
-
-        let timer = Timer( timeInterval: timerInterval, repeats: true )
+        self.setTimer()
+        self.log.refresh
         {
-            _ in self.log.refresh()
+            DispatchQueue.main.async
+            {
+                self.update()
+            }
+        }
+    }
+    
+    private func setTimer()
+    {
+        self.timer?.invalidate()
+        let interval = timerInterval
+        let timer = Timer( timeInterval: Double( interval ), repeats: true )
+        {
+            _ in self.log.refresh
+            {
+                DispatchQueue.main.async
+                {
+                    self.update()
+                }
+            }
         }
         
-        timer.tolerance = 5.0
         RunLoop.main.add( timer, forMode: .common )
         
         self.timer = timer
-        
-        self.log.refresh()
     }
     
     private func update()
@@ -80,16 +92,8 @@ public class InfoViewController: NSViewController
             self.graphView.addData( temperature: self.cpuTemperature )
         }
         
-        if let n = self.log.gpuTemperature?.intValue
-        {
-            self.gpuTemperature = n
-        }
-        
-        if self.gpuTemperature > 0
-        {
-            //self.graphView.addData( temperature: self.cpuTemperature )
-        }
-        
         self.graphViewHeight.constant = self.graphView.canDisplay ? 100 : 0
+        
+        self.onUpdate?()
     }
 }

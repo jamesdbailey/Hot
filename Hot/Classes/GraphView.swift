@@ -33,7 +33,7 @@ public class GraphView: NSView
         self.data.append( temperature )
         
         self.data         = self.data.suffix( 50 )
-        self.needsDisplay = true
+        //self.needsDisplay = true
     }
     
     public var canDisplay: Bool

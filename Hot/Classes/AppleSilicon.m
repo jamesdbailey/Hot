@@ -75,7 +75,7 @@ IOHIDEventSystemClientRef IOHIDEventSystemClientCreate( CFAllocatorRef );
 CFTypeRef                 IOHIDServiceClientCopyEvent( IOHIDServiceClientRef, int64_t, int32_t, int64_t );
 double                    IOHIDEventGetFloatValue( CFTypeRef, int32_t );
 
-NSDictionary< NSString *, NSNumber * > * ReadM1Sensors( void )
+NSDictionary< NSString *, NSNumber * > * ReadSensors( void )
 {
     NSMutableDictionary< NSString *, NSNumber * > * values = [ NSMutableDictionary new ];
     IOHIDEventSystemClientRef client                       = IOHIDEventSystemClientCreate( kCFAllocatorDefault );
@@ -95,6 +95,7 @@ NSDictionary< NSString *, NSNumber * > * ReadM1Sensors( void )
                 NSNumber *n = [ NSNumber numberWithDouble: IOHIDEventGetFloatValue( event, 0x000F0000 ) ];
                 if (n.doubleValue > 0.0)
                 {
+                    //NSLog(@"Name: %@; Value: %@", name, n);
                     values[ name ] = n;
                 }
             }
