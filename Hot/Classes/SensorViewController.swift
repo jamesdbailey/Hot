@@ -34,49 +34,7 @@ public class SensorViewController: NSViewController
         didSet
         {
             self.label = self.name.hasSuffix( ":" ) ? self.name : "\( self.name ):"
-            
-            if self.name.lowercased().hasPrefix( "eacc" )
-            {
-                self.icon = NSImage( systemSymbolName: "leaf.fill", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "pacc" )
-            {
-                self.icon = NSImage( systemSymbolName: "bolt.fill", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "tcxc" )
-            {
-                self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
-            }
-            else if (self.name.lowercased().hasPrefix( "soc" )) ||
-                        (self.name.lowercased().hasPrefix( "pmgr" )) ||
-                        (self.name.lowercased().hasPrefix( "gpu" ))
-            {
-                self.icon = NSImage( systemSymbolName: "cpu", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "ane" )
-            {
-                self.icon = NSImage( systemSymbolName: "brain", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "isp" )
-            {
-                self.icon = NSImage( systemSymbolName: "camera", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "nand" )
-            {
-                self.icon = NSImage( systemSymbolName: "memorychip", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "gas" )
-            {
-                self.icon = NSImage( systemSymbolName: "battery.100.bolt", accessibilityDescription: nil )
-            }
-            else if self.name.lowercased().hasPrefix( "pmu" )
-            {
-                self.icon = NSImage( systemSymbolName: "gearshape.2", accessibilityDescription: nil )
-            }
-            else
-            {
-                self.icon = NSImage( systemSymbolName: "questionmark", accessibilityDescription: nil )
-            }
+            self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
         }
     }
     

@@ -31,7 +31,7 @@ public class ThermalLog: NSObject
     
     private var refreshing = false
     
-    private static var queue = DispatchQueue( label: "com.xs-labs.Hot.ThermalLog", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
+    private static var queue = DispatchQueue( label: "com.jamesdbailey.Hot.ThermalLog", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
     
     public override init()
     {
@@ -77,6 +77,7 @@ public class ThermalLog: NSObject
 
             if temp > 1
             {
+                self.sensors        = sensors
                 let n = NSNumber( value: temp )
                 self.cpuTemperature = n
             }
