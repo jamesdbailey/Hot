@@ -77,7 +77,11 @@ public class ThermalLog: NSObject
 
             if temp > 1
             {
-                self.sensors        = sensors
+                self.sensors        = sensors.filter
+                {
+                    let k = $0.key.lowercased()
+                    return k.hasSuffix( "tcal" ) == false && k.hasSuffix( "tr0z" ) == false
+                }
                 let n = NSNumber( value: temp )
                 self.cpuTemperature = n
             }

@@ -179,7 +179,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         
         self.infoViewController?.log.sensors.sorted
         {
-            $0.key.compare( $1.key, options: .numeric, range: nil, locale: nil ) == .orderedAscending
+            $0.key.lowercased().compare( $1.key.lowercased() ) == .orderedAscending
         }
         .forEach
         {

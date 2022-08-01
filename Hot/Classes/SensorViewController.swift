@@ -34,7 +34,20 @@ public class SensorViewController: NSViewController
         didSet
         {
             self.label = self.name.hasSuffix( ":" ) ? self.name : "\( self.name ):"
-            self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
+            
+            if self.name.lowercased().hasPrefix( "nand" )
+            {
+                self.icon = NSImage( systemSymbolName: "memorychip", accessibilityDescription: nil )
+            } else if self.name.lowercased().hasPrefix( "gas" )
+            {
+                self.icon = NSImage( systemSymbolName: "battery.100.bolt", accessibilityDescription: nil )
+            } else if self.name.lowercased().hasPrefix("pmu2")
+            {
+                self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
+            } else
+            {
+                self.icon = NSImage( systemSymbolName: "cpu", accessibilityDescription: nil )
+            }
         }
     }
     
