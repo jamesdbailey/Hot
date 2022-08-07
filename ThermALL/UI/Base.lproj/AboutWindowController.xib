@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21219" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21219"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,20 +12,20 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="About Hot" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QvC-M9-y7g">
+        <window title="About ThermALL" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="277" height="168"/>
+            <rect key="contentRect" x="196" y="240" width="307" height="198"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1470" height="919"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="307" height="198"/>
+                <rect key="frame" x="0.0" y="-30" width="307" height="198"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="ls5-I3-hMR">
                         <rect key="frame" x="0.0" y="0.0" width="307" height="198"/>
                         <subviews>
                             <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bkJ-Ud-XM8">
-                                <rect key="frame" x="30" y="27.5" width="128" height="135"/>
+                                <rect key="frame" x="30" y="30" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="CSW-JZ-Wa6"/>
                                     <constraint firstAttribute="height" constant="128" id="kJV-3v-pYD"/>
@@ -94,6 +93,6 @@
         </window>
     </objects>
     <resources>
-        <image name="flame" catalog="system" width="13" height="16"/>
+        <image name="flame" catalog="system" width="32" height="32"/>
     </resources>
 </document>

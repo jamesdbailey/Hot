@@ -74,6 +74,7 @@ public class InfoViewController: NSViewController
                 }
             }
         }
+        timer.tolerance = 0.5
         
         RunLoop.main.add( timer, forMode: .common )
         

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Volumes/caseSensitiveData/Development-cs/github/ThermALL/ThermALL.xcodeproj">
    </FileRef>
 </Workspace>

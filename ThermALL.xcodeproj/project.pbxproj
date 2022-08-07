@@ -59,7 +59,7 @@
 		055A932825277F990070F771 /* PercentToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentToString.swift; sourceTree = "<group>"; };
 		055A932A252780FD0070F771 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		057F8B0B251D273E0048F1E1 /* AboutWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
-		057F8B0E251D274C0048F1E1 /* Hot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hot-Bridging-Header.h"; sourceTree = "<group>"; };
+		057F8B0E251D274C0048F1E1 /* ThermALL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThermALL-Bridging-Header.h"; sourceTree = "<group>"; };
 		057F8B14251D27650048F1E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutWindowController.xib; sourceTree = "<group>"; };
 		057F8B1E251D2B900048F1E1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		057F8B1F251D2B900048F1E1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -107,11 +107,11 @@
 		057F8B52251D2C840048F1E1 /* ccache-config.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "ccache-config.sh"; sourceTree = "<group>"; };
 		057F8B53251D2C840048F1E1 /* ccache.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ccache.sh; sourceTree = "<group>"; };
 		057F8B54251D2C840048F1E1 /* Debug - zld.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - zld.xcconfig"; sourceTree = "<group>"; };
-		05AA4076251CF3D200106CEA /* Hot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		05AA4076251CF3D200106CEA /* ThermALL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThermALL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05AA4079251CF3D200106CEA /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
 		05AA407E251CF3D600106CEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		05AA4080251CF3D600106CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05AA4081251CF3D600106CEA /* Hot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hot.entitlements; sourceTree = "<group>"; };
+		05AA4081251CF3D600106CEA /* ThermALL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThermALL.entitlements; sourceTree = "<group>"; };
 		05AA408C251CFA0600106CEA /* ThermalLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalLog.swift; sourceTree = "<group>"; };
 		6DE5A31626B89D8D00B9744F /* NSApplication+LaunchServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+LaunchServices.h"; sourceTree = "<group>"; };
 		6DE5A31726B89D8D00B9744F /* NSApplication+LaunchServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+LaunchServices.m"; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				057F8B1E251D2B900048F1E1 /* LICENSE */,
 				057F8B1F251D2B900048F1E1 /* README.md */,
 				057F8B20251D2C840048F1E1 /* xcconfig */,
-				05AA4078251CF3D200106CEA /* Hot */,
+				05AA4078251CF3D200106CEA /* ThermALL */,
 				05AA4077251CF3D200106CEA /* Products */,
 				057F8B64251D2D5F0048F1E1 /* Frameworks */,
 			);
@@ -268,20 +268,20 @@
 		05AA4077251CF3D200106CEA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				05AA4076251CF3D200106CEA /* Hot.app */,
+				05AA4076251CF3D200106CEA /* ThermALL.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		05AA4078251CF3D200106CEA /* Hot */ = {
+		05AA4078251CF3D200106CEA /* ThermALL */ = {
 			isa = PBXGroup;
 			children = (
 				05AA4088251CF3F400106CEA /* Classes */,
-				05AA4081251CF3D600106CEA /* Hot.entitlements */,
+				05AA4081251CF3D600106CEA /* ThermALL.entitlements */,
 				05AA4080251CF3D600106CEA /* Info.plist */,
 				05AA4089251CF3FC00106CEA /* UI */,
 			);
-			path = Hot;
+			path = ThermALL;
 			sourceTree = "<group>";
 		};
 		05AA4088251CF3F400106CEA /* Classes */ = {
@@ -291,7 +291,7 @@
 				05AA4079251CF3D200106CEA /* ApplicationDelegate.swift */,
 				05221E87267009A8007246FF /* SensorViewController.swift */,
 				055A932A252780FD0070F771 /* GraphView.swift */,
-				057F8B0E251D274C0048F1E1 /* Hot-Bridging-Header.h */,
+				057F8B0E251D274C0048F1E1 /* ThermALL-Bridging-Header.h */,
 				055A931F252778C10070F771 /* InfoViewController.swift */,
 				055A932425277E9E0070F771 /* IntegerToString.swift */,
 				05221E8526700772007246FF /* DictionaryIsEmpty.swift */,
@@ -324,9 +324,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		05AA4075251CF3D200106CEA /* Hot */ = {
+		05AA4075251CF3D200106CEA /* ThermALL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05AA4084251CF3D600106CEA /* Build configuration list for PBXNativeTarget "Hot" */;
+			buildConfigurationList = 05AA4084251CF3D600106CEA /* Build configuration list for PBXNativeTarget "ThermALL" */;
 			buildPhases = (
 				05AA4072251CF3D200106CEA /* Sources */,
 				05AA4073251CF3D200106CEA /* Frameworks */,
@@ -338,9 +338,9 @@
 			);
 			dependencies = (
 			);
-			name = Hot;
+			name = ThermALL;
 			productName = Hot;
-			productReference = 05AA4076251CF3D200106CEA /* Hot.app */;
+			productReference = 05AA4076251CF3D200106CEA /* ThermALL.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -358,7 +358,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 05AA4071251CF3D200106CEA /* Build configuration list for PBXProject "Hot" */;
+			buildConfigurationList = 05AA4071251CF3D200106CEA /* Build configuration list for PBXProject "ThermALL" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -371,7 +371,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				05AA4075251CF3D200106CEA /* Hot */,
+				05AA4075251CF3D200106CEA /* ThermALL */,
 			);
 		};
 /* End PBXProject section */
@@ -507,16 +507,16 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 75J6C96V4Y;
 				ENABLE_HARDENED_RUNTIME = NO;
-				INFOPLIST_FILE = Hot/Info.plist;
+				INFOPLIST_FILE = ThermALL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Hot";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamesdbailey.ThermALL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Hot/Classes/Hot-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThermALL/Classes/ThermALL-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -524,27 +524,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_ENTITLEMENTS = Hot/Hot.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ThermALL/ThermALL.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 75J6C96V4Y;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Hot/Info.plist;
+				INFOPLIST_FILE = ThermALL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.Hot";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamesdbailey.ThermALL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Hot/Classes/Hot-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThermALL/Classes/ThermALL-Bridging-Header.h";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05AA4071251CF3D200106CEA /* Build configuration list for PBXProject "Hot" */ = {
+		05AA4071251CF3D200106CEA /* Build configuration list for PBXProject "ThermALL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05AA4082251CF3D600106CEA /* Debug */,
@@ -553,7 +553,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05AA4084251CF3D600106CEA /* Build configuration list for PBXNativeTarget "Hot" */ = {
+		05AA4084251CF3D600106CEA /* Build configuration list for PBXNativeTarget "ThermALL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05AA4085251CF3D600106CEA /* Debug */,

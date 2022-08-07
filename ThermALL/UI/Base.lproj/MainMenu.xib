@@ -12,7 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="ApplicationDelegate" customModule="Hot" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="ApplicationDelegate" customModule="ThermALL" customModuleProvider="target">
             <connections>
                 <outlet property="menu" destination="YdR-H7-b4a" id="jeu-CN-jol"/>
                 <outlet property="sensorsMenu" destination="ub7-du-ljd" id="LPJ-gc-4R1"/>
@@ -21,11 +21,11 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
-                <menuItem title="Hot" id="1Xt-HY-uBw">
+                <menuItem title="ThermALL" id="1Xt-HY-uBw">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Hot" systemMenu="apple" id="uQy-DD-JDr">
+                    <menu key="submenu" title="ThermALL" systemMenu="apple" id="uQy-DD-JDr">
                         <items>
-                            <menuItem title="About Hot" id="5kV-Vb-QxS">
+                            <menuItem title="About ThermALL" id="5kV-Vb-QxS">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
@@ -39,7 +39,7 @@
                                 <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                            <menuItem title="Hide Hot" keyEquivalent="h" id="Olw-nP-bQN">
+                            <menuItem title="Hide ThermALL" keyEquivalent="h" id="Olw-nP-bQN">
                                 <connections>
                                     <action selector="hide:" target="-1" id="PnN-Uc-m68"/>
                                 </connections>
@@ -57,7 +57,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                            <menuItem title="Quit Hot" keyEquivalent="q" id="4sb-4s-VLi">
+                            <menuItem title="Quit ThermALL" keyEquivalent="q" id="4sb-4s-VLi">
                                 <connections>
                                     <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
                                 </connections>
@@ -670,7 +670,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                         <items>
-                            <menuItem title="Hot Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                            <menuItem title="ThermALL Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="y7X-2Q-9no"/>
                                 </connections>
@@ -683,7 +683,7 @@
         </menu>
         <menu id="YdR-H7-b4a">
             <items>
-                <menuItem title="About Hot..." id="QHW-tw-3d1">
+                <menuItem title="About ThermALL..." id="QHW-tw-3d1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="VBY-01-CWB"/>
