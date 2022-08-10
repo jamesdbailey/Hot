@@ -51,12 +51,21 @@ public class ThermalLog: NSObject
         super.init()
     }
     
-    private func readTemperatureSensors() -> [ String :  Double ]
+    private func readSMCTemperatureSensors() -> [ String :  Double ]
     {
         let smc = SMC()
 
         return Dictionary( uniqueKeysWithValues:
             readSensors(smc: smc, prefix: "T").map {
+                ( $0.key, $0.value )
+            }
+        )
+    }
+    
+    private func readHIDTemperatureSensors() -> [ String :  Double ]
+    {
+        return Dictionary( uniqueKeysWithValues:
+            readHIDAppleSMCTemperatureSensors().map {
                 ( $0.key, $0.value )
             }
         )
@@ -75,7 +84,7 @@ public class ThermalLog: NSObject
             
             self.refreshing = true
             
-            let sensors = self.readTemperatureSensors()
+            let sensors = self.readHIDTemperatureSensors()
             let all     = sensors.mapValues { $0 }
             var temp    = 0.0
             
