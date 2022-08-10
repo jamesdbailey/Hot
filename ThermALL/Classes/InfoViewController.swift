@@ -76,7 +76,7 @@ public class InfoViewController: NSViewController
         }
         timer.tolerance = 0.5
         
-        RunLoop.main.add( timer, forMode: .common )
+        RunLoop.main.add( timer, forMode: .default )
         
         self.timer = timer
     }
@@ -93,8 +93,8 @@ public class InfoViewController: NSViewController
             self.graphView.addData( temperature: self.cpuTemperature )
         }
         
-        self.graphViewHeight.constant = self.graphView.canDisplay ? 100 : 0
-        
+        self.graphViewHeight.constant = 100
+
         self.onUpdate?()
     }
 }

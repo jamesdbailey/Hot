@@ -33,6 +33,19 @@ public class ThermalLog: NSObject
     
     private static var queue = DispatchQueue( label: "com.jamesdbailey.ThermALL.ThermalLog", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
     
+    func readSensors(smc: SMC, prefix: String) -> Dictionary<String, Double> {
+        var dict = [String: Double]()
+        var keys = smc.getAllKeys()
+        keys = keys.filter{ $0.hasPrefix(prefix)}
+        keys.forEach {
+            (key: String) in
+            let value = smc.getValue(key)
+            dict[key] = value
+        }
+        
+        return dict
+    }
+
     public override init()
     {
         super.init()
@@ -40,10 +53,11 @@ public class ThermalLog: NSObject
     
     private func readTemperatureSensors() -> [ String :  Double ]
     {
-         Dictionary( uniqueKeysWithValues:
-            ReadSensors().map
-            {
-                ( $0.key, $0.value.doubleValue )
+        let smc = SMC()
+
+        return Dictionary( uniqueKeysWithValues:
+            readSensors(smc: smc, prefix: "T").map {
+                ( $0.key, $0.value )
             }
         )
     }
@@ -64,6 +78,11 @@ public class ThermalLog: NSObject
             let sensors = self.readTemperatureSensors()
             let all     = sensors.mapValues { $0 }
             var temp    = 0.0
+            
+            sensors.forEach {
+                (key: String, value: Double) in
+                print("[\(key)]    ", value)
+            }
 
             temp = all.filter
             {

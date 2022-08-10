@@ -33,7 +33,8 @@ public class GraphView: NSView
         self.data.append( temperature )
         
         self.data         = self.data.suffix( 50 )
-        //self.needsDisplay = true
+        
+        self.needsDisplay = true
     }
     
     public var canDisplay: Bool
@@ -43,11 +44,6 @@ public class GraphView: NSView
     
     public override func draw( _ rect: NSRect )
     {
-        if self.canDisplay == false
-        {
-            return
-        }
-        
         let graphOutlinePath = NSBezierPath( roundedRect: rect.insetBy( dx: 1, dy: 1 ), xRadius: 10, yRadius: 10 )
         
         NSColor.controlTextColor.withAlphaComponent( 0.2 ).setStroke()

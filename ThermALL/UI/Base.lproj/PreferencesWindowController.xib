@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21219" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21219"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +16,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="638" height="160"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1470" height="919"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="638" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -49,16 +48,6 @@
                         </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="flame" catalog="system" id="L7y-FV-PXr"/>
                     </imageView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="COq-oL-Uqj">
-                        <rect key="frame" x="18" y="19" width="104" height="18"/>
-                        <buttonCell key="cell" type="check" title="Start at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QeP-eX-Ina">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="-2" name="value" keyPath="self.startAtLogin" id="q1c-fK-f83"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cY4-xR-ECB">
                         <rect key="frame" x="18" y="73" width="233" height="18"/>
                         <buttonCell key="cell" type="check" title="Hide the Menu Bar icon if possible" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J5N-yj-bbh">
@@ -72,8 +61,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="mxk-B1-lA8" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="3GX-GM-vTF"/>
-                    <constraint firstItem="mxk-B1-lA8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="COq-oL-Uqj" secondAttribute="trailing" constant="50" id="6lQ-SD-jRz"/>
-                    <constraint firstAttribute="bottom" secondItem="COq-oL-Uqj" secondAttribute="bottom" constant="20" id="9K5-IZ-MYJ"/>
                     <constraint firstItem="cY4-xR-ECB" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="LR3-Dc-FeE"/>
                     <constraint firstItem="mxk-B1-lA8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HBx-Rv-VgA" secondAttribute="trailing" constant="50" id="Rbc-hx-s0i"/>
                     <constraint firstAttribute="trailing" secondItem="mxk-B1-lA8" secondAttribute="trailing" constant="20" symbolic="YES" id="RfV-f8-i7E"/>
@@ -84,7 +71,6 @@
                     <constraint firstItem="aiX-U8-MD5" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="di9-hT-iTi"/>
                     <constraint firstItem="mxk-B1-lA8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cY4-xR-ECB" secondAttribute="trailing" constant="50" id="tb6-JB-ocX"/>
                     <constraint firstAttribute="bottom" secondItem="mxk-B1-lA8" secondAttribute="bottom" constant="20" symbolic="YES" id="zKM-Ly-4wi"/>
-                    <constraint firstItem="COq-oL-Uqj" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="zO1-Pk-x1d"/>
                     <constraint firstItem="cY4-xR-ECB" firstAttribute="top" secondItem="HBx-Rv-VgA" secondAttribute="bottom" constant="12" id="zgn-6L-UYt"/>
                 </constraints>
             </view>
