@@ -192,66 +192,50 @@ public class SMC {
             
             switch val.dataType {
             case SMCDataType.UI8.rawValue:
-                print("UI8 \(val)")
                 return Double(val.bytes[0])
             case SMCDataType.UI16.rawValue:
-                print("UI16 \(val)")
                 return Double(UInt16(bytes: (val.bytes[0], val.bytes[1])))
             case SMCDataType.UI32.rawValue:
-                print("UI32 \(val)")
                 return Double(UInt32(bytes: (val.bytes[0], val.bytes[1], val.bytes[2], val.bytes[3])))
             case SMCDataType.SP1E.rawValue:
-                print("SP1E \(val)")
                 let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
                 return Double(result / 16384)
             case SMCDataType.SP3C.rawValue:
-                print("SP3C \(val)")
                 let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
                 return Double(result / 4096)
             case SMCDataType.SP4B.rawValue:
-                print("SP4B \(val)")
                 let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
                 return Double(result / 2048)
             case SMCDataType.SP5A.rawValue:
-                print("SP5A \(val)")
                 let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
                 return Double(result / 1024)
             case SMCDataType.SP69.rawValue:
-                print("SP69 \(val)")
                 let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
                 return Double(result / 512)
             case SMCDataType.SP78.rawValue:
-                print("SP78 \(val)")
                 let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
                 return Double(intValue / 256)
             case SMCDataType.SP87.rawValue:
-                print("SP87 \(val)")
                 let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
                 return Double(intValue / 128)
             case SMCDataType.SP96.rawValue:
-                print("SP96 \(val)")
                 let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
                 return Double(intValue / 64)
             case SMCDataType.SPB4.rawValue:
-                print("SPB4 \(val)")
                 let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
                 return Double(intValue / 16)
             case SMCDataType.SPF0.rawValue:
-                print("SPF0 \(val)")
                 let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
                 return intValue
             case SMCDataType.FLT.rawValue:
-                print("FLT \(val)")
                 let value: Float? = Float(val.bytes)
                 if value != nil {
                     return Double(value!)
                 }
                 return nil
             case SMCDataType.FPE2.rawValue:
-                print("FPE2 \(val)")
                 return Double(Int(fromFPE2: (val.bytes[0], val.bytes[1])))
             default:
-                print("default \(val)")
                 return nil
             }
         }

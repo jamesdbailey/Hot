@@ -704,9 +704,9 @@
                         </items>
                     </menu>
                     <connections>
-                        <binding destination="Voe-Tx-rLC" name="hidden" keyPath="self.infoViewController.log.sensors" id="Ywl-za-s4Y">
+                        <binding destination="xlJ-YJ-efG" name="hidden" keyPath="values.self.infoViewController.log.sensors" id="GEr-MF-lE1">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">DictionaryIsEmpty</string>
+                                <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -726,5 +726,6 @@
             </items>
             <point key="canvasLocation" x="-226" y="47"/>
         </menu>
+        <userDefaultsController representsSharedInstance="YES" id="xlJ-YJ-efG"/>
     </objects>
 </document>

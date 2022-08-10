@@ -79,11 +79,6 @@ public class ThermalLog: NSObject
             let all     = sensors.mapValues { $0 }
             var temp    = 0.0
             
-            sensors.forEach {
-                (key: String, value: Double) in
-                print("[\(key)]    ", value)
-            }
-
             temp = all.filter
             {
                 let k = $0.key.lowercased()

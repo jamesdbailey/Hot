@@ -24,7 +24,6 @@
 		05AA407F251CF3D600106CEA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AA407D251CF3D600106CEA /* MainMenu.xib */; };
 		05AA408D251CFA0600106CEA /* ThermalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AA408C251CFA0600106CEA /* ThermalLog.swift */; };
 		6DB7D0BF28A410FA00392B39 /* smc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB7D0BE28A410FA00392B39 /* smc.swift */; };
-		6DB7D0C128A4134A00392B39 /* DictionaryIsEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB7D0C028A4134A00392B39 /* DictionaryIsEmpty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,7 +105,6 @@
 		05AA4081251CF3D600106CEA /* ThermALL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThermALL.entitlements; sourceTree = "<group>"; };
 		05AA408C251CFA0600106CEA /* ThermalLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalLog.swift; sourceTree = "<group>"; };
 		6DB7D0BE28A410FA00392B39 /* smc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = smc.swift; sourceTree = "<group>"; };
-		6DB7D0C028A4134A00392B39 /* DictionaryIsEmpty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryIsEmpty.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,7 +277,6 @@
 		05AA4088251CF3F400106CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				6DB7D0C028A4134A00392B39 /* DictionaryIsEmpty.swift */,
 				6DB7D0BE28A410FA00392B39 /* smc.swift */,
 				057F8B0B251D273E0048F1E1 /* AboutWindowController.swift */,
 				05AA4079251CF3D200106CEA /* ApplicationDelegate.swift */,
@@ -409,7 +406,6 @@
 				05221E88267009A8007246FF /* SensorViewController.swift in Sources */,
 				057F8B0C251D273E0048F1E1 /* AboutWindowController.swift in Sources */,
 				6DB7D0BF28A410FA00392B39 /* smc.swift in Sources */,
-				6DB7D0C128A4134A00392B39 /* DictionaryIsEmpty.swift in Sources */,
 				055A9320252778C10070F771 /* InfoViewController.swift in Sources */,
 				05AA408D251CFA0600106CEA /* ThermalLog.swift in Sources */,
 				055A932925277F990070F771 /* PercentToString.swift in Sources */,
