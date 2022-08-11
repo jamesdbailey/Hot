@@ -686,7 +686,7 @@
                 <menuItem title="About ThermALL..." id="QHW-tw-3d1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="showAboutWindow:" target="Voe-Tx-rLC" id="VBY-01-CWB"/>
+                        <action selector="showAboutBox:" target="Voe-Tx-rLC" id="VBY-01-CWB"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="seQ-hq-eZH"/>
@@ -704,7 +704,7 @@
                         </items>
                     </menu>
                     <connections>
-                        <binding destination="xlJ-YJ-efG" name="hidden" keyPath="values.self.infoViewController.log.sensors" id="GEr-MF-lE1">
+                        <binding destination="xlJ-YJ-efG" name="hidden" keyPath="values.self.infoViewController.updateSensors.sensors" id="GEr-MF-lE1">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">NSIsNotNil</string>
                             </dictionary>
@@ -714,7 +714,7 @@
                 <menuItem isSeparatorItem="YES" id="Nbp-cG-gpV"/>
                 <menuItem title="Preferences..." keyEquivalent="," id="JFH-mp-6PU">
                     <connections>
-                        <action selector="showPreferencesWindow:" target="Voe-Tx-rLC" id="E99-rm-GGi"/>
+                        <action selector="showPreferencesPane:" target="Voe-Tx-rLC" id="E99-rm-GGi"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="EM4-fa-dhP"/>

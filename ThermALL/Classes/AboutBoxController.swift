@@ -24,34 +24,27 @@
 
 import Cocoa
 
-public class PreferencesWindowController: NSWindowController
-{
-    @objc public dynamic var displayCPUTemperature = UserDefaults.standard.bool( forKey: "displayCPUTemperature" )
-    {
-        didSet
-        {
-            UserDefaults.standard.setValue( self.displayCPUTemperature, forKey: "displayCPUTemperature" )
-        }
+public class AboutBoxController: NSWindowController {
+    @objc private dynamic var name:      String?
+    @objc private dynamic var version:   String?
+    @objc private dynamic var copyright: String?
+    
+    public override var windowNibName: NSNib.Name? {
+        return "AboutBoxController"
     }
     
-    @objc public dynamic var convertToFahrenheit = UserDefaults.standard.bool( forKey: "convertToFahrenheit" )
-    {
-        didSet
-        {
-            UserDefaults.standard.setValue( self.convertToFahrenheit, forKey: "convertToFahrenheit" )
+    override public func windowDidLoad() {
+        super.windowDidLoad()
+        
+        let version = Bundle.main.object( forInfoDictionaryKey: "CFBundleShortVersionString" ) as? String ?? "0.0.0"
+        
+        if let build = Bundle.main.object( forInfoDictionaryKey: "CFBundleVersion" ) as? String {
+            self.version = "\(version) (\(build))"
+        } else {
+            self.version = version
         }
-    }
-    
-    @objc public dynamic var hideStatusIcon = UserDefaults.standard.bool( forKey: "hideStatusIcon" )
-    {
-        didSet
-        {
-            UserDefaults.standard.setValue( self.hideStatusIcon, forKey: "hideStatusIcon" )
-        }
-    }
-    
-    public override var windowNibName: NSNib.Name?
-    {
-        return "PreferencesWindowController"
+        
+        self.name      = Bundle.main.object( forInfoDictionaryKey: "CFBundleName" ) as? String
+        self.copyright = Bundle.main.object( forInfoDictionaryKey: "NSHumanReadableCopyright" ) as? String
     }
 }

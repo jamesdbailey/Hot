@@ -24,35 +24,30 @@
 
 import Cocoa
 
-public class InfoViewController: NSViewController
-{
-    private var timer:        Timer?
+public class InfoViewController: NSViewController {
+    private var timer: Timer?
     private var observations: [ NSKeyValueObservation ] = []
     
-    @objc public private( set ) dynamic var log                 = ThermalLog()
+    @objc public private( set ) dynamic var sensors = SensorsUpdate()
     @objc public private( set ) dynamic var cpuTemperature: Int = 0
 
-    @IBOutlet private var graphView:       GraphView!
+    @IBOutlet private var graphView: GraphView!
     @IBOutlet private var graphViewHeight: NSLayoutConstraint!
     
     public var onUpdate: ( () -> Void )?
-
     let timerInterval = 5.0
     
-    public override var nibName: NSNib.Name?
-    {
+    public override var nibName: NSNib.Name? {
         "InfoViewController"
     }
     
-    public override func viewDidLoad()
-    {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         self.graphViewHeight.constant = 0
         
         self.setTimer()
-        self.log.refresh
-        {
+        self.sensors.refresh {
             DispatchQueue.main.async
             {
                 self.update()
@@ -64,9 +59,8 @@ public class InfoViewController: NSViewController
     {
         self.timer?.invalidate()
         let interval = timerInterval
-        let timer = Timer( timeInterval: Double( interval ), repeats: true )
-        {
-            _ in self.log.refresh
+        let timer = Timer( timeInterval: Double( interval ), repeats: true ) {
+            _ in self.sensors.refresh
             {
                 DispatchQueue.main.async
                 {
@@ -74,8 +68,8 @@ public class InfoViewController: NSViewController
                 }
             }
         }
-        timer.tolerance = 0.5
         
+        timer.tolerance = 0.5
         RunLoop.main.add( timer, forMode: .common )
         
         self.timer = timer
@@ -83,7 +77,7 @@ public class InfoViewController: NSViewController
     
     private func update()
     {
-        if let n = self.log.cpuTemperature?.intValue
+        if let n = self.sensors.cpuTemperature?.intValue
         {
             self.cpuTemperature = n
         }

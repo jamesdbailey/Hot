@@ -25,90 +25,76 @@
 import Cocoa
 
 @NSApplicationMain
-class ApplicationDelegate: NSObject, NSApplicationDelegate
-{
-    private var statusItem:                  NSStatusItem?
-    private var aboutWindowController:       AboutWindowController?
-    private var preferencesWindowController: PreferencesWindowController?
-    private var observations:                [ NSKeyValueObservation ] = []
-    private var sensorViewControllers:       [ SensorViewController  ] = []
+class ApplicationDelegate: NSObject, NSApplicationDelegate {
+    private var statusItem: NSStatusItem?
+    private var aboutBoxController: AboutBoxController?
+    private var preferencesPaneController: PreferencesPaneController?
+    private var observations: [ NSKeyValueObservation ] = []
+    private var sensorViewControllers: [ SensorViewController  ] = []
     
-    @IBOutlet private var menu:        NSMenu!
+    @IBOutlet private var menu: NSMenu!
     @IBOutlet private var sensorsMenu: NSMenu!
     
     @objc public private( set ) dynamic var infoViewController: InfoViewController?
     
-    deinit
-    {
+    deinit {
         UserDefaults.standard.removeObserver( self, forKeyPath: "displayCPUTemperature" )
         UserDefaults.standard.removeObserver( self, forKeyPath: "convertToFahrenheit" )
         UserDefaults.standard.removeObserver( self, forKeyPath: "hideStatusIcon" )
     }
     
-    func applicationDidFinishLaunching( _ notification: Notification )
-    {
-        if UserDefaults.standard.object( forKey: "LastLaunch" ) == nil
-        {
-            UserDefaults.standard.setValue( true,     forKey: "displayCPUTemperature" )
+    func applicationDidFinishLaunching( _ notification: Notification ) {
+        if UserDefaults.standard.object( forKey: "LastLaunch" ) == nil {
+            UserDefaults.standard.setValue( true, forKey: "displayCPUTemperature" )
             UserDefaults.standard.setValue( NSDate(), forKey: "LastLaunch" )
         }
         
-        self.aboutWindowController             = AboutWindowController()
-        self.preferencesWindowController       = PreferencesWindowController()
-        self.statusItem                        = NSStatusBar.system.statusItem( withLength: NSStatusItem.variableLength )
-        self.statusItem?.button?.image         = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
+        self.aboutBoxController  = AboutBoxController()
+        self.preferencesPaneController = PreferencesPaneController()
+        self.statusItem = NSStatusBar.system.statusItem( withLength: NSStatusItem.variableLength )
+        self.statusItem?.button?.image = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
         self.statusItem?.button?.imagePosition = .imageLeading
-        self.statusItem?.button?.font          = NSFont.monospacedDigitSystemFont( ofSize: NSFont.smallSystemFontSize, weight: .light )
-        self.statusItem?.menu                  = self.menu
-        
-        let infoViewController             = InfoViewController()
-        self.infoViewController            = infoViewController
+        self.statusItem?.button?.font = NSFont.monospacedDigitSystemFont( ofSize: NSFont.smallSystemFontSize, weight: .light )
+        self.statusItem?.menu = self.menu
+        let infoViewController  = InfoViewController()
+        self.infoViewController = infoViewController
         self.menu.item( withTag: 1 )?.view = infoViewController.view
         
-        self.infoViewController?.onUpdate  =
-        {
+        self.infoViewController?.onUpdate  = {
             [ weak self ] in
             
             self?.updateTitle()
             self?.updateSensors()
         }
 
-        UserDefaults.standard.addObserver( self, forKeyPath: "displayCPUTemperature",  options: [], context: nil )
-        UserDefaults.standard.addObserver( self, forKeyPath: "convertToFahrenheit",    options: [], context: nil )
-        UserDefaults.standard.addObserver( self, forKeyPath: "hideStatusIcon",         options: [], context: nil )
+        UserDefaults.standard.addObserver( self, forKeyPath: "displayCPUTemperature", options: [], context: nil )
+        UserDefaults.standard.addObserver( self, forKeyPath: "convertToFahrenheit", options: [], context: nil )
+        UserDefaults.standard.addObserver( self, forKeyPath: "hideStatusIcon", options: [], context: nil )
     }
     
-    override func observeValue( forKeyPath keyPath: String?, of object: Any?, change: [ NSKeyValueChangeKey : Any ]?, context: UnsafeMutableRawPointer? )
-    {
-        let keyPaths =
-        [
+    override func observeValue( forKeyPath keyPath: String?, of object: Any?, change: [ NSKeyValueChangeKey : Any ]?, context: UnsafeMutableRawPointer? ) {
+        let keyPaths = [
             "displayCPUTemperature",
             "convertToFahrenheit",
             "hideStatusIcon"
         ]
         
-        if let keyPath = keyPath, let object = object as? NSObject, object == UserDefaults.standard && keyPaths.contains( keyPath )
-        {
+        if let keyPath = keyPath, let object = object as? NSObject, object == UserDefaults.standard && keyPaths.contains( keyPath ) {
             self.updateTitle()
             self.updateSensors()
-        }
-        else
-        {
+        } else {
             super.observeValue( forKeyPath: keyPath, of: object, change: change, context: context )
         }
     }
     
-    @IBAction public func showAboutWindow( _ sender: Any? )
-    {
-        guard let window = self.aboutWindowController?.window else
-        {
+    @IBAction public func showAboutBox( _ sender: Any? ) {
+        guard let window = self.aboutBoxController?.window else {
             NSSound.beep()
             
             return
         }
         
-        if window.isVisible == false
-        {
+        if window.isVisible == false {
             window.layoutIfNeeded()
             window.center()
         }
@@ -117,17 +103,14 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         window.makeKeyAndOrderFront( nil )
     }
     
-    @IBAction public func showPreferencesWindow( _ sender: Any? )
-    {
-        guard let window = self.preferencesWindowController?.window else
-        {
+    @IBAction public func showPreferencesPane( _ sender: Any? ) {
+        guard let window = self.preferencesPaneController?.window else {
             NSSound.beep()
             
             return
         }
         
-        if window.isVisible == false
-        {
+        if window.isVisible == false {
             window.layoutIfNeeded()
             window.center()
         }
@@ -136,58 +119,45 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate
         window.makeKeyAndOrderFront( nil )
     }
         
-    private func updateTitle()
-    {
+    private func updateTitle() {
         var title       = ""
         let transformer = TemperatureToString()
         
         if let n = self.infoViewController?.cpuTemperature,
                 UserDefaults.standard.bool( forKey: "displayCPUTemperature" ),
-                n > 0
-        {
+                n > 0 {
             title = transformer.transformedValue( n ) as? String ?? "--"
         }
         
-        if title.count == 0
-        {
+        if title.count == 0 {
             self.statusItem?.button?.title = ""
-        }
-        else
-        {
-            let color: NSColor =
-            {
+        } else {
+            let color: NSColor = {
                 return .controlTextColor
             }()
             
             self.statusItem?.button?.attributedTitle = NSAttributedString( string: title, attributes: [ .foregroundColor : color ] )
         }
         
-        if UserDefaults.standard.bool( forKey: "hideStatusIcon" ) && title.count > 0
-        {
+        if UserDefaults.standard.bool( forKey: "hideStatusIcon" ) && title.count > 0 {
             self.statusItem?.button?.image = nil
-        }
-        else
-        {
+        } else {
             self.statusItem?.button?.image = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
         }
     }
     
-    private func updateSensors()
-    {
+    private func updateSensors() {
         self.sensorsMenu.removeAllItems()
         self.sensorViewControllers.removeAll()
         
-        self.infoViewController?.log.sensors.sorted
-        {
+        self.infoViewController?.sensors.sensors.sorted {
             $0.key.lowercased().compare( $1.key.lowercased() ) == .orderedAscending
-        }
-        .forEach
-        {
-            let controller   = SensorViewController()
+        }.forEach {
+            let controller = SensorViewController()
             controller.name  = $0.key
             controller.value = Int( $0.value )
-            let item         = NSMenuItem( title: $0.key, action: nil, keyEquivalent: "" )
-            item.view        = controller.view
+            let item = NSMenuItem( title: $0.key, action: nil, keyEquivalent: "" )
+            item.view  = controller.view
             
             self.sensorsMenu.addItem( item )
         }

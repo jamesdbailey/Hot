@@ -24,14 +24,14 @@
 
 import Foundation
 
-public class ThermalLog: NSObject
+public class SensorsUpdate: NSObject
 {
     @objc public dynamic var cpuTemperature: NSNumber?
-    @objc public dynamic var sensors:        [ String : Double ] = [:]
+    @objc public dynamic var sensors: [ String : Double ] = [:]
     
     private var refreshing = false
     
-    private static var queue = DispatchQueue( label: "com.jamesdbailey.ThermALL.ThermalLog", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
+    private static var queue = DispatchQueue( label: "com.jamesdbailey.ThermALL.SensorsUpdate", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
     
     func readSensors(smc: SMC, prefix: String) -> Dictionary<String, Double> {
         var dict = [String: Double]()
@@ -46,13 +46,11 @@ public class ThermalLog: NSObject
         return dict
     }
 
-    public override init()
-    {
+    public override init() {
         super.init()
     }
     
-    private func readSMCTemperatureSensors() -> [ String :  Double ]
-    {
+    private func readSMCTemperatureSensors() -> [ String :  Double ] {
         let smc = SMC()
 
         return Dictionary( uniqueKeysWithValues:
@@ -62,8 +60,7 @@ public class ThermalLog: NSObject
         )
     }
     
-    private func readHIDTemperatureSensors() -> [ String :  Double ]
-    {
+    private func readHIDTemperatureSensors() -> [ String :  Double ] {
         return Dictionary( uniqueKeysWithValues:
             readHIDAppleSMCTemperatureSensors().map {
                 ( $0.key, $0.value )
@@ -71,12 +68,9 @@ public class ThermalLog: NSObject
         )
     }
     
-    public func refresh( completion: @escaping () -> Void )
-    {
-        ThermalLog.queue.async
-        {
-            if self.refreshing
-            {
+    public func refresh( completion: @escaping () -> Void ) {
+        SensorsUpdate.queue.async {
+            if self.refreshing {
                 completion()
 
                 return
@@ -85,26 +79,22 @@ public class ThermalLog: NSObject
             self.refreshing = true
             
             let sensors = self.readHIDTemperatureSensors()
-            let all     = sensors.mapValues { $0 }
-            var temp    = 0.0
+            let all = sensors.mapValues { $0 }
+            var temp = 0.0
             
-            temp = all.filter
-            {
+            temp = all.filter {
                 let k = $0.key.lowercased()
                 return k.hasSuffix( "tcal" ) == false && k.hasSuffix( "tr0z" ) == false
-            }
-            .reduce( 0.0 )
-            {
+            }.reduce( 0.0 ) {
                 r, v in v.value > r ? v.value : r
             }
 
-            if temp > 1
-            {
-                self.sensors        = sensors.filter
-                {
+            if temp > 1 {
+                self.sensors = sensors.filter {
                     let k = $0.key.lowercased()
                     return k.hasSuffix( "tcal" ) == false && k.hasSuffix( "tr0z" ) == false
                 }
+                
                 let n = NSNumber( value: temp )
                 self.cpuTemperature = n
             }
