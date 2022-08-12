@@ -49,7 +49,7 @@
                     <connections>
                         <binding destination="-2" name="value" keyPath="self.value" id="3zI-0w-IQw">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">TemperatureToString</string>
+                                <string key="NSValueTransformerName">TemperatureWithDefaultsToString</string>
                             </dictionary>
                         </binding>
                     </connections>

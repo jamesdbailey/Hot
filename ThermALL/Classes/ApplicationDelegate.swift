@@ -1,26 +1,6 @@
-/*******************************************************************************
- * The MIT License (MIT)
- * 
- * Copyright (c) 2020 Jean-David Gadina - www.xs-labs.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- ******************************************************************************/
+//
+//  ApplicationDelegate.swift
+//
 
 import Cocoa
 
@@ -35,48 +15,52 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private var menu: NSMenu!
     @IBOutlet private var sensorsMenu: NSMenu!
     
-    @objc public private( set ) dynamic var infoViewController: InfoViewController?
+    @objc public private( set ) dynamic var menuViewController: MenuViewController?
     
     deinit {
-        UserDefaults.standard.removeObserver( self, forKeyPath: "displayCPUTemperature" )
-        UserDefaults.standard.removeObserver( self, forKeyPath: "convertToFahrenheit" )
-        UserDefaults.standard.removeObserver( self, forKeyPath: "hideStatusIcon" )
+        UserDefaults.standard.removeObserver( self, forKeyPath: "displaySoCTemperature" )
+        UserDefaults.standard.removeObserver( self, forKeyPath: "hideMenuIcon" )
+        UserDefaults.standard.removeObserver( self, forKeyPath: "toDegF" )
     }
     
     func applicationDidFinishLaunching( _ notification: Notification ) {
         if UserDefaults.standard.object( forKey: "LastLaunch" ) == nil {
-            UserDefaults.standard.setValue( true, forKey: "displayCPUTemperature" )
+            UserDefaults.standard.setValue( true, forKey: "displaySoCTemperature" )
             UserDefaults.standard.setValue( NSDate(), forKey: "LastLaunch" )
         }
         
         self.aboutBoxController  = AboutBoxController()
         self.preferencesPaneController = PreferencesPaneController()
         self.statusItem = NSStatusBar.system.statusItem( withLength: NSStatusItem.variableLength )
+        self.statusItem?.button?.font = NSFont.monospacedDigitSystemFont( ofSize: NSFont.smallSystemFontSize, weight: .light )
         self.statusItem?.button?.image = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
         self.statusItem?.button?.imagePosition = .imageLeading
-        self.statusItem?.button?.font = NSFont.monospacedDigitSystemFont( ofSize: NSFont.smallSystemFontSize, weight: .light )
-        self.statusItem?.menu = self.menu
-        let infoViewController  = InfoViewController()
-        self.infoViewController = infoViewController
-        self.menu.item( withTag: 1 )?.view = infoViewController.view
         
-        self.infoViewController?.onUpdate  = {
-            [ weak self ] in
+        let menuViewController  = MenuViewController()
+        self.menuViewController = menuViewController
+        self.menu.item( withTag: 1 )?.view = menuViewController.view
+        
+        self.statusItem?.menu = self.menu
+
+        self.menuViewController?.onUpdate  = { [ weak self ] in
+            guard let self = self else {
+                return
+            }
             
-            self?.updateTitle()
-            self?.updateSensors()
+            self.updateTitle()
+            self.updateSensors()
         }
 
-        UserDefaults.standard.addObserver( self, forKeyPath: "displayCPUTemperature", options: [], context: nil )
-        UserDefaults.standard.addObserver( self, forKeyPath: "convertToFahrenheit", options: [], context: nil )
-        UserDefaults.standard.addObserver( self, forKeyPath: "hideStatusIcon", options: [], context: nil )
+        UserDefaults.standard.addObserver( self, forKeyPath: "displaySoCTemperature", options: [], context: nil )
+        UserDefaults.standard.addObserver( self, forKeyPath: "hideMenuIcon", options: [], context: nil )
+        UserDefaults.standard.addObserver( self, forKeyPath: "toDegF", options: [], context: nil )
     }
     
     override func observeValue( forKeyPath keyPath: String?, of object: Any?, change: [ NSKeyValueChangeKey : Any ]?, context: UnsafeMutableRawPointer? ) {
         let keyPaths = [
-            "displayCPUTemperature",
-            "convertToFahrenheit",
-            "hideStatusIcon"
+            "displaySoCTemperature",
+            "hideMenuIcon",
+            "toDegF"
         ]
         
         if let keyPath = keyPath, let object = object as? NSObject, object == UserDefaults.standard && keyPaths.contains( keyPath ) {
@@ -89,8 +73,6 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction public func showAboutBox( _ sender: Any? ) {
         guard let window = self.aboutBoxController?.window else {
-            NSSound.beep()
-            
             return
         }
         
@@ -105,8 +87,6 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction public func showPreferencesPane( _ sender: Any? ) {
         guard let window = self.preferencesPaneController?.window else {
-            NSSound.beep()
-            
             return
         }
         
@@ -120,11 +100,11 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate {
     }
         
     private func updateTitle() {
-        var title       = ""
-        let transformer = TemperatureToString()
+        var title = ""
+        let transformer = TemperatureWithDefaultsToString()
         
-        if let n = self.infoViewController?.cpuTemperature,
-                UserDefaults.standard.bool( forKey: "displayCPUTemperature" ),
+        if let n = self.menuViewController?.socTemperature,
+                UserDefaults.standard.bool( forKey: "displaySoCTemperature" ),
                 n > 0 {
             title = transformer.transformedValue( n ) as? String ?? "--"
         }
@@ -133,13 +113,13 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate {
             self.statusItem?.button?.title = ""
         } else {
             let color: NSColor = {
-                return .controlTextColor
+                .controlTextColor
             }()
             
             self.statusItem?.button?.attributedTitle = NSAttributedString( string: title, attributes: [ .foregroundColor : color ] )
         }
         
-        if UserDefaults.standard.bool( forKey: "hideStatusIcon" ) && title.count > 0 {
+        if UserDefaults.standard.bool( forKey: "hideMenuIcon" ) && title.count > 0 {
             self.statusItem?.button?.image = nil
         } else {
             self.statusItem?.button?.image = NSImage( systemSymbolName: "flame.fill", accessibilityDescription: nil )
@@ -150,7 +130,7 @@ class ApplicationDelegate: NSObject, NSApplicationDelegate {
         self.sensorsMenu.removeAllItems()
         self.sensorViewControllers.removeAll()
         
-        self.infoViewController?.sensors.sensors.sorted {
+        self.menuViewController?.sensors.sensors.sorted {
             $0.key.lowercased().compare( $1.key.lowercased() ) == .orderedAscending
         }.forEach {
             let controller = SensorViewController()

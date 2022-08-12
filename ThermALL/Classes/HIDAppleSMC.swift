@@ -1,8 +1,5 @@
 //
 //  HIDAppleSMC.swift
-//  ThermALL
-//
-//  Created by jdb on 8/10/22.
 //
 
 let kIOHIDEventTypeTemperature = 15
@@ -26,16 +23,16 @@ func readHIDAppleSMCTemperatureSensors() -> Dictionary<String, Double> {
     let matching_srvs = IOHIDEventSystemClientCopyServices(system)!
     let matchingCount = CFArrayGetCount(matching_srvs) - 1
     var sensorDictionary: [String : Double] = [:]
-    for i in 0...matchingCount {
-        let sc = unsafeBitCast(CFArrayGetValueAtIndex(matching_srvs, i), to:  IOHIDServiceClient.self)
-        if let p = IOHIDServiceClientCopyProperty(sc, __CFStringMakeConstantString("Product")) {
-            let name = p as!String
-            let event = IOHIDServiceClientCopyEvent(sc, Int64(kIOHIDEventTypeTemperature), 0, 0)
+    for matchIdx in 0...matchingCount {
+        let serviceClient = unsafeBitCast(CFArrayGetValueAtIndex(matching_srvs, matchIdx), to:  IOHIDServiceClient.self)
+        if let product = IOHIDServiceClientCopyProperty(serviceClient, __CFStringMakeConstantString("Product")) {
+            let name = product as! String
+            let event = IOHIDServiceClientCopyEvent(serviceClient, Int64(kIOHIDEventTypeTemperature), 0, 0)
             
-            if (event != nil && !name.hasSuffix(kAppleSMCCalibrationSensors[0]) && !name.hasSuffix(kAppleSMCCalibrationSensors[1])) {
-                let temp = IOHIDEventGetFloatValue(event, IOHIDEventField(type: kIOHIDEventTypeTemperature));
-                if (temp > 0) {
-                    sensorDictionary[name] = temp;
+            if event != nil && !name.hasSuffix(kAppleSMCCalibrationSensors[0]) && !name.hasSuffix(kAppleSMCCalibrationSensors[1]) {
+                let temperature = IOHIDEventGetFloatValue(event, IOHIDEventField(type: kIOHIDEventTypeTemperature));
+                if (temperature > 0) {
+                    sensorDictionary[name] = temperature;
                 }
             }
         }

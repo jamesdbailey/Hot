@@ -1,45 +1,25 @@
-/*******************************************************************************
- * The MIT License (MIT)
- * 
- * Copyright (c) 2020 Jean-David Gadina - www.xs-labs.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- ******************************************************************************/
+//
+//  PreferencesPaneController.swift
+//
 
 import Cocoa
 
 public class PreferencesPaneController: NSWindowController {
-    @objc public dynamic var displayCPUTemperature = UserDefaults.standard.bool( forKey: "displayCPUTemperature" ) {
+    @objc public dynamic var displaySoCTemperature = UserDefaults.standard.bool( forKey: "displaySoCTemperature" ) {
         didSet {
-            UserDefaults.standard.setValue( self.displayCPUTemperature, forKey: "displayCPUTemperature" )
+            UserDefaults.standard.setValue( self.displaySoCTemperature, forKey: "displaySoCTemperature" )
         }
     }
     
-    @objc public dynamic var convertToFahrenheit = UserDefaults.standard.bool( forKey: "convertToFahrenheit" ) {
+    @objc public dynamic var toDegF = UserDefaults.standard.bool( forKey: "toDegF" ) {
         didSet {
-            UserDefaults.standard.setValue( self.convertToFahrenheit, forKey: "convertToFahrenheit" )
+            UserDefaults.standard.setValue( self.toDegF, forKey: "toDegF" )
         }
     }
     
-    @objc public dynamic var hideStatusIcon = UserDefaults.standard.bool( forKey: "hideStatusIcon" ) {
+    @objc public dynamic var hideMenuIcon = UserDefaults.standard.bool( forKey: "hideMenuIcon" ) {
         didSet {
-            UserDefaults.standard.setValue( self.hideStatusIcon, forKey: "hideStatusIcon" )
+            UserDefaults.standard.setValue( self.hideMenuIcon, forKey: "hideMenuIcon" )
         }
     }
     

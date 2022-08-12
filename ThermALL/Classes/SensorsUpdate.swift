@@ -1,35 +1,14 @@
-/*******************************************************************************
- * The MIT License (MIT)
- * 
- * Copyright (c) 2020 Jean-David Gadina - www.xs-labs.com
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- ******************************************************************************/
+//
+//  SensorsUpdate.swift
+//
 
 import Foundation
 
-public class SensorsUpdate: NSObject
-{
-    @objc public dynamic var cpuTemperature: NSNumber?
+public class SensorsUpdate: NSObject {
+    @objc public dynamic var socTemperature: NSNumber?
     @objc public dynamic var sensors: [ String : Double ] = [:]
     
-    private var refreshing = false
+    private var updating = false
     
     private static var queue = DispatchQueue( label: "com.jamesdbailey.ThermALL.SensorsUpdate", qos: .background, attributes: [], autoreleaseFrequency: .workItem, target: nil )
     
@@ -68,38 +47,37 @@ public class SensorsUpdate: NSObject
         )
     }
     
-    public func refresh( completion: @escaping () -> Void ) {
+    public func update( completion: @escaping () -> Void ) {
         SensorsUpdate.queue.async {
-            if self.refreshing {
+            if self.updating {
                 completion()
 
                 return
             }
             
-            self.refreshing = true
+            self.updating = true
             
             let sensors = self.readHIDTemperatureSensors()
             let all = sensors.mapValues { $0 }
-            var temp = 0.0
+            var temperature = 0.0
             
-            temp = all.filter {
-                let k = $0.key.lowercased()
-                return k.hasSuffix( "tcal" ) == false && k.hasSuffix( "tr0z" ) == false
+            temperature = all.filter {
+                let key = $0.key.lowercased()
+                return key.hasSuffix( "tcal" ) == false && key.hasSuffix( "tr0z" ) == false
             }.reduce( 0.0 ) {
                 r, v in v.value > r ? v.value : r
             }
 
-            if temp > 1 {
+            if temperature > 0 {
                 self.sensors = sensors.filter {
-                    let k = $0.key.lowercased()
-                    return k.hasSuffix( "tcal" ) == false && k.hasSuffix( "tr0z" ) == false
+                    let key = $0.key.lowercased()
+                    return key.hasSuffix( "tcal" ) == false && key.hasSuffix( "tr0z" ) == false
                 }
                 
-                let n = NSNumber( value: temp )
-                self.cpuTemperature = n
+                self.socTemperature = NSNumber( value: temperature )
             }
 
-            self.refreshing = false
+            self.updating = false
 
             completion()
         }

@@ -1,11 +1,13 @@
 //
-//  smc.swift
-//  SMC
+//  SMC.swift
+//
 
 import Foundation
 import IOKit
 
 internal enum SMCDataType: String {
+    case FLT = "flt "
+    case FPE2 = "fpe2"
     case UI8 = "ui8 "
     case UI16 = "ui16"
     case UI32 = "ui32"
@@ -19,10 +21,6 @@ internal enum SMCDataType: String {
     case SP96 = "sp96"
     case SPB4 = "spb4"
     case SPF0 = "spf0"
-    case FLT = "flt "
-    case FPE2 = "fpe2"
-    case FP2E = "fp2e"
-    case FDS = "{fds"
 }
 
 // swiftlint:disable identifier_name
@@ -68,12 +66,10 @@ internal struct SMCKeyData_t {
     var status: UInt8 = 0
     var data8: UInt8 = 0
     var data32: UInt32 = 0
-    var bytes =     (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
-                     UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
-                     UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
-                     UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
-                     UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
-                     UInt8(0), UInt8(0))
+    var bytes = (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
+                 UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
+                 UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
+                 UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0))
 }
 
 internal struct SMCVal_t {
@@ -99,8 +95,8 @@ extension FourCharCode {
     func toString() -> String {
         return String(describing: UnicodeScalar(self >> 24 & 0xff)!) +
                String(describing: UnicodeScalar(self >> 16 & 0xff)!) +
-               String(describing: UnicodeScalar(self >> 8  & 0xff)!) +
-               String(describing: UnicodeScalar(self       & 0xff)!)
+               String(describing: UnicodeScalar(self >> 8 & 0xff)!) +
+               String(describing: UnicodeScalar(self & 0xff)!)
     }
 }
 
@@ -191,52 +187,52 @@ public class SMC {
             }
             
             switch val.dataType {
-            case SMCDataType.UI8.rawValue:
-                return Double(val.bytes[0])
-            case SMCDataType.UI16.rawValue:
-                return Double(UInt16(bytes: (val.bytes[0], val.bytes[1])))
-            case SMCDataType.UI32.rawValue:
-                return Double(UInt32(bytes: (val.bytes[0], val.bytes[1], val.bytes[2], val.bytes[3])))
-            case SMCDataType.SP1E.rawValue:
-                let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
-                return Double(result / 16384)
-            case SMCDataType.SP3C.rawValue:
-                let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
-                return Double(result / 4096)
-            case SMCDataType.SP4B.rawValue:
-                let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
-                return Double(result / 2048)
-            case SMCDataType.SP5A.rawValue:
-                let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
-                return Double(result / 1024)
-            case SMCDataType.SP69.rawValue:
-                let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
-                return Double(result / 512)
-            case SMCDataType.SP78.rawValue:
-                let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
-                return Double(intValue / 256)
-            case SMCDataType.SP87.rawValue:
-                let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
-                return Double(intValue / 128)
-            case SMCDataType.SP96.rawValue:
-                let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
-                return Double(intValue / 64)
-            case SMCDataType.SPB4.rawValue:
-                let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
-                return Double(intValue / 16)
-            case SMCDataType.SPF0.rawValue:
-                let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
-                return intValue
-            case SMCDataType.FLT.rawValue:
-                let value: Float? = Float(val.bytes)
-                if value != nil {
-                    return Double(value!)
-                }
-                return nil
-            case SMCDataType.FPE2.rawValue:
-                return Double(Int(fromFPE2: (val.bytes[0], val.bytes[1])))
-            default:
-                return nil
+                case SMCDataType.FLT.rawValue:
+                    let value: Float? = Float(val.bytes)
+                    if value != nil {
+                        return Double(value!)
+                    }
+                    return nil
+                case SMCDataType.FPE2.rawValue:
+                    return Double(Int(fromFPE2: (val.bytes[0], val.bytes[1])))
+                case SMCDataType.UI8.rawValue:
+                    return Double(val.bytes[0])
+                case SMCDataType.UI16.rawValue:
+                    return Double(UInt16(bytes: (val.bytes[0], val.bytes[1])))
+                case SMCDataType.UI32.rawValue:
+                    return Double(UInt32(bytes: (val.bytes[0], val.bytes[1], val.bytes[2], val.bytes[3])))
+                case SMCDataType.SP1E.rawValue:
+                    let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
+                    return Double(result / 16384)
+                case SMCDataType.SP3C.rawValue:
+                    let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
+                    return Double(result / 4096)
+                case SMCDataType.SP4B.rawValue:
+                    let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
+                    return Double(result / 2048)
+                case SMCDataType.SP5A.rawValue:
+                    let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
+                    return Double(result / 1024)
+                case SMCDataType.SP69.rawValue:
+                    let result: Double = Double(UInt16(val.bytes[0]) * 256 + UInt16(val.bytes[1]))
+                    return Double(result / 512)
+                case SMCDataType.SP78.rawValue:
+                    let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
+                    return Double(intValue / 256)
+                case SMCDataType.SP87.rawValue:
+                    let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
+                    return Double(intValue / 128)
+                case SMCDataType.SP96.rawValue:
+                    let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
+                    return Double(intValue / 64)
+                case SMCDataType.SPB4.rawValue:
+                    let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
+                    return Double(intValue / 16)
+                case SMCDataType.SPF0.rawValue:
+                    let intValue: Double = Double(Int(val.bytes[0]) * 256 + Int(val.bytes[1]))
+                    return intValue
+                default:
+                    return nil
             }
         }
         
@@ -271,9 +267,6 @@ public class SMC {
         
         return list
     }
-    
-    
-    // MARK: - internal functions
     
     private func read(_ value: UnsafeMutablePointer<SMCVal_t>) -> kern_return_t {
         var result: kern_return_t = 0

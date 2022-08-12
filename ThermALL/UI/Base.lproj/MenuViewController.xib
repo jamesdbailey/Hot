@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="InfoViewController" customModule="ThermALL" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="MenuViewController" customModule="ThermALL" customModuleProvider="target">
             <connections>
                 <outlet property="graphView" destination="fKC-eM-8Gr" id="GqG-t8-Mqb"/>
                 <outlet property="graphViewHeight" destination="Xru-bU-lDl" id="Trb-lr-WNa"/>
@@ -21,8 +21,8 @@
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dLg-xH-BAs">
                     <rect key="frame" x="20" y="135" width="16" height="24"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="16" id="1Ir-kf-mst"/>
-                        <constraint firstAttribute="width" constant="16" id="Kuu-8l-qbR"/>
+                        <constraint firstAttribute="height" constant="16" id="58z-0o-vdb"/>
+                        <constraint firstAttribute="width" constant="16" id="iXv-Kd-aDo"/>
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="thermometer" catalog="system" id="AfK-fl-oW3"/>
                 </imageView>
@@ -42,9 +42,9 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="-2" name="value" keyPath="self.cpuTemperature" id="I48-UT-YDu">
+                        <binding destination="-2" name="value" keyPath="self.socTemperature" id="I48-UT-YDu">
                             <dictionary key="options">
-                                <string key="NSValueTransformerName">TemperatureToString</string>
+                                <string key="NSValueTransformerName">TemperatureWithDefaultsToString</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -53,20 +53,23 @@
                     <rect key="frame" x="20" y="20" width="177" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="Xru-bU-lDl"/>
+                        <constraint firstAttribute="width" constant="177" id="Zr9-jF-EfF"/>
                     </constraints>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kbo-4e-30G" secondAttribute="trailing" constant="20" symbolic="YES" id="1db-1U-ikI"/>
-                <constraint firstItem="fKC-eM-8Gr" firstAttribute="top" secondItem="dLg-xH-BAs" secondAttribute="bottom" constant="19" id="7JA-PP-CqJ"/>
+                <constraint firstAttribute="trailing" secondItem="Kbo-4e-30G" secondAttribute="trailing" constant="20" id="1UU-xf-9XT"/>
+                <constraint firstAttribute="bottom" secondItem="okO-0n-FNv" secondAttribute="bottom" constant="139" id="5VE-tT-bhB"/>
+                <constraint firstAttribute="bottom" secondItem="Kbo-4e-30G" secondAttribute="bottom" constant="139" id="92j-MM-1Gp"/>
                 <constraint firstAttribute="bottom" secondItem="fKC-eM-8Gr" secondAttribute="bottom" constant="20" id="9d8-Is-6sO"/>
-                <constraint firstItem="dLg-xH-BAs" firstAttribute="leading" secondItem="fKC-eM-8Gr" secondAttribute="leading" id="I8E-yV-wfc"/>
-                <constraint firstItem="Kbo-4e-30G" firstAttribute="trailing" secondItem="fKC-eM-8Gr" secondAttribute="trailing" id="fb1-iw-zvx"/>
-                <constraint firstItem="Kbo-4e-30G" firstAttribute="leading" secondItem="okO-0n-FNv" secondAttribute="trailing" constant="8" symbolic="YES" id="iyC-yh-3us"/>
+                <constraint firstItem="Kbo-4e-30G" firstAttribute="leading" secondItem="okO-0n-FNv" secondAttribute="trailing" constant="8" id="Eeg-Fc-mjz"/>
+                <constraint firstItem="okO-0n-FNv" firstAttribute="leading" secondItem="dLg-xH-BAs" secondAttribute="trailing" constant="8" id="Huk-8u-Awf"/>
+                <constraint firstItem="dLg-xH-BAs" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="Jf7-h7-dsf"/>
+                <constraint firstItem="dLg-xH-BAs" firstAttribute="leading" secondItem="fKC-eM-8Gr" secondAttribute="leading" id="Lwd-UM-cqN"/>
+                <constraint firstItem="fKC-eM-8Gr" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" id="Wgb-fX-2MU"/>
+                <constraint firstAttribute="bottom" secondItem="dLg-xH-BAs" secondAttribute="bottom" constant="139" id="dwp-tT-DhH"/>
                 <constraint firstAttribute="trailing" secondItem="fKC-eM-8Gr" secondAttribute="trailing" constant="20" symbolic="YES" id="lQb-rR-MBE"/>
-                <constraint firstItem="okO-0n-FNv" firstAttribute="centerY" secondItem="dLg-xH-BAs" secondAttribute="centerY" id="o1G-SO-wTY"/>
-                <constraint firstItem="okO-0n-FNv" firstAttribute="leading" secondItem="dLg-xH-BAs" secondAttribute="trailing" constant="8" symbolic="YES" id="qNz-Yg-BLR"/>
-                <constraint firstItem="Kbo-4e-30G" firstAttribute="centerY" secondItem="okO-0n-FNv" secondAttribute="centerY" id="u0N-B6-QNp"/>
+                <constraint firstItem="okO-0n-FNv" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="2" id="ox5-2u-jZn"/>
             </constraints>
             <point key="canvasLocation" x="-632.5" y="34.5"/>
         </customView>

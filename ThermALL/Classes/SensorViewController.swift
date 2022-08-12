@@ -1,58 +1,49 @@
-/*******************************************************************************
- * The MIT License (MIT)
- *
- * Copyright (c) 2021 Jean-David Gadina - www.xs-labs.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- ******************************************************************************/
+//
+//  SensorViewController.swift
+//
 
 import Cocoa
 
-public class SensorViewController: NSViewController
-{
+public class SensorViewController: NSViewController {
     @objc private dynamic var icon  = NSImage( systemSymbolName: "questionmark", accessibilityDescription: nil )
     @objc private dynamic var label = "Unknown:"
     @objc public  dynamic var value = 0
-    @objc public  dynamic var name  = "Unknown"
-    {
-        didSet
-        {
+    
+    @objc public  dynamic var name  = "Unknown" {
+        didSet {
             self.label = self.name.hasSuffix( ":" ) ? self.name : "\( self.name ):"
             
-            if self.name.lowercased().hasPrefix( "nand" )
-            {
+            if self.name.lowercased().hasPrefix( "nand" ) {
                 self.icon = NSImage( systemSymbolName: "memorychip", accessibilityDescription: nil )
-            } else if self.name.lowercased().hasPrefix( "gas" )
-            {
+            } else if self.name.lowercased().hasPrefix( "gas" ) {
                 self.icon = NSImage( systemSymbolName: "battery.100.bolt", accessibilityDescription: nil )
-            } else if self.name.lowercased().hasPrefix("pmu2")
-            {
+            } else if self.name.lowercased().hasPrefix("pmu") {
+                if self.name.lowercased().hasPrefix("pmu2") {
+                    self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
+                } else {
+                    self.icon = NSImage( systemSymbolName: "cpu", accessibilityDescription: nil )
+                }
+            } else if self.name.lowercased().hasPrefix( "eacc" ) {
+                self.icon = NSImage( systemSymbolName: "leaf.fill", accessibilityDescription: nil )
+            } else if self.name.lowercased().hasPrefix( "pacc" ) {
+                self.icon = NSImage( systemSymbolName: "bolt.fill", accessibilityDescription: nil )
+            } else if self.name.lowercased().hasPrefix( "tcxc" ) {
                 self.icon = NSImage( systemSymbolName: "cpu.fill", accessibilityDescription: nil )
-            } else
-            {
+            } else if self.name.lowercased().hasPrefix( "soc" )
+                        || self.name.lowercased().hasPrefix( "pmgr" )
+                        || self.name.lowercased().hasPrefix( "gpu" ) {
+                self.icon = NSImage( systemSymbolName: "cpu", accessibilityDescription: nil )
+            } else if self.name.lowercased().hasPrefix( "ane" ) {
+                self.icon = NSImage( systemSymbolName: "brain", accessibilityDescription: nil )
+            } else if self.name.lowercased().hasPrefix( "isp" ) {
+                self.icon = NSImage( systemSymbolName: "camera", accessibilityDescription: nil )
+            } else {
                 self.icon = NSImage( systemSymbolName: "cpu", accessibilityDescription: nil )
             }
         }
     }
     
-    public override var nibName: NSNib.Name?
-    {
+    public override var nibName: NSNib.Name? {
         "SensorViewController"
     }
 }

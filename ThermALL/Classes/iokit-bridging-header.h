@@ -1,8 +1,5 @@
 //
 //  iokit-bridging-header.h
-//  ThermALL
-//
-//  Created by jdb on 8/10/22.
 //
 
 #ifndef iokit_bridging_header_h

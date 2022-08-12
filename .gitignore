@@ -22,4 +22,5 @@ Icon?
 !default.mode2v3
 !default.perspectivev3
 xcuserdata
-ThermALL 20[2-9]*[0-9]*-[0-12]*-[0-31]*
+Debug ThermALL 20[22–99]*-[0]*[1-12]*-*
+ThermALL 20[22-99]*-[0]*[1-12]*-*
