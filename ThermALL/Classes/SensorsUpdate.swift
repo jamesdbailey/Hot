@@ -64,10 +64,8 @@ public class SensorsUpdate: NSObject {
             temperature = all.filter {
                 let key = $0.key.lowercased()
                 return key.hasSuffix( "tcal" ) == false && key.hasSuffix( "tr0z" ) == false
-            }.reduce( 0.0 ) {
-                r, v in v.value > r ? v.value : r
-            }
-
+            }.reduce( 0.0 ) { r, v in v.value > r ? v.value : r }
+            
             if temperature > 0 {
                 self.sensors = sensors.filter {
                     let key = $0.key.lowercased()

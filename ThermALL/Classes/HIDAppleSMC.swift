@@ -31,7 +31,7 @@ func readHIDAppleSMCTemperatureSensors() -> Dictionary<String, Double> {
             
             if event != nil && !name.hasSuffix(kAppleSMCCalibrationSensors[0]) && !name.hasSuffix(kAppleSMCCalibrationSensors[1]) {
                 let temperature = IOHIDEventGetFloatValue(event, IOHIDEventField(type: kIOHIDEventTypeTemperature));
-                if (temperature > 0) {
+                if temperature > 0 {
                     sensorDictionary[name] = temperature;
                 }
             }
