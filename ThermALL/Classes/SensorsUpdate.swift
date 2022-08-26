@@ -82,6 +82,17 @@ let SMCM2TemperatureKeys: [String] = [
     "Ts0c"
 ]
 
+let kAppleSMCCalibrationSensors = ["tcal", "TR0Z"]
+func skipCalibrationSensors(name: String) -> Bool {
+    for match in kAppleSMCCalibrationSensors {
+        if name.hasSuffix(match) {
+            return false
+        }
+    }
+    
+    return true
+}
+
 public class SensorsUpdate: NSObject {
     @objc public dynamic var socTemperature: NSNumber?
     @objc public dynamic var sensors: [ String : Double ] = [:]
@@ -124,7 +135,7 @@ public class SensorsUpdate: NSObject {
         super.init()
     }
     
-    private func readSMCTemperatureSensors() -> [ String :  Double ] {
+    private func readSMCTemperatureSensors() -> [ String : Double ] {
         let smc = SMC()
 
         return Dictionary( uniqueKeysWithValues:
@@ -134,7 +145,7 @@ public class SensorsUpdate: NSObject {
         )
     }
     
-    private func readHIDTemperatureSensors() -> [ String :  Double ] {
+    private func readHIDTemperatureSensors() -> [ String : Double ] {
         return Dictionary( uniqueKeysWithValues:
             readHIDAppleSMCTemperatureSensors().map {
                 ( $0.key, $0.value )
@@ -154,22 +165,18 @@ public class SensorsUpdate: NSObject {
             
             let hidSensors = self.readHIDTemperatureSensors()
             let smcSensors = self.readSMCTemperatureSensors()
+            let filteredHID: [String:Double] = hidSensors.filter { skipCalibrationSensors(name: $0.key) }.mapValues { $0 }
             let allHID: [String:Double] = hidSensors.mapValues { $0 }
-            var allSMC: [String:Double] = smcSensors.mapValues { $0 }
+            let allSMC: [String:Double] = smcSensors.mapValues { $0 }
             var temperature = 0.0
+            var allSensors: [String:Double] = allSMC
             
-            allSMC.merge(allHID) { (_, current) in current }
-            
-            temperature = allSMC.filter {
-                let key = $0.key.lowercased()
-                return key.hasSuffix( "tcal" ) == false && key.hasSuffix( "tr0z" ) == false
-            }.reduce( 0.0 ) { r, v in v.value > r ? v.value : r }
+            allSensors.merge(filteredHID) { (_, current) in current }
+            temperature = allSensors.reduce( 0.0 ) { r, v in v.value > r ? v.value : r }
             
             if temperature > 0 {
-                self.sensors = allSMC.filter {
-                    let key = $0.key.lowercased()
-                    return !key.hasSuffix( "tcal" ) && !key.hasSuffix( "tr0z" )
-                }
+                allSensors.merge(allHID) { (_, current) in current }
+                self.sensors = allSensors
                 
                 self.socTemperature = NSNumber( value: temperature )
             }

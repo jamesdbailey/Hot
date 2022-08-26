@@ -5,7 +5,6 @@
 let kIOHIDEventTypeTemperature = 15
 let kAppleSMCUsagePage = 0xff00
 let kAppleSMCUsage = 5
-let kAppleSMCCalibrationSensors = ["tcal", "TR0Z"]
 
 func IOHIDEventField(type: Int) -> Int32 {
     return Int32(type << 16)
@@ -29,7 +28,7 @@ func readHIDAppleSMCTemperatureSensors() -> Dictionary<String, Double> {
             let name = product as! String
             let event = IOHIDServiceClientCopyEvent(serviceClient, Int64(kIOHIDEventTypeTemperature), 0, 0)
             
-            if event != nil && !name.hasSuffix(kAppleSMCCalibrationSensors[0]) && !name.hasSuffix(kAppleSMCCalibrationSensors[1]) {
+            if event != nil {
                 let temperature = IOHIDEventGetFloatValue(event, IOHIDEventField(type: kIOHIDEventTypeTemperature));
                 if temperature > 0 {
                     sensorDictionary[name] = temperature;
